@@ -1,2 +1,3 @@
 *.pyc
 */*.pyc
+vsafe/settings.py
