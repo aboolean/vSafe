@@ -53,7 +53,7 @@ var all_tiles = [
     {
         "title":   'Apple',
         "image":   '/vsafe/img/apple.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','fruit'],
         "vt":      true,
         "vg":      true
@@ -61,7 +61,7 @@ var all_tiles = [
     {
         "title":   'Barley',
         "image":   '/vsafe/img/barley.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','grain'],
         "vt":      true,
         "vg":      true
@@ -69,7 +69,7 @@ var all_tiles = [
     {
         "title":   'Basil',
         "image":   '/vsafe/img/basil.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','other'],
         "vt":      true,
         "vg":      true
@@ -77,7 +77,7 @@ var all_tiles = [
     {
         "title":   'Butter',
         "image":   '/vsafe/img/butter.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
         "vg":      false
@@ -85,7 +85,7 @@ var all_tiles = [
     {
         "title":   'Cheese',
         "image":   '/vsafe/img/cheese.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
         "vg":      false
@@ -93,7 +93,7 @@ var all_tiles = [
     {
         "title":   'Chickpeas',
         "image":   '/vsafe/img/chickpeas.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','protein'],
         "vt":      true,
         "vg":      true
@@ -101,7 +101,7 @@ var all_tiles = [
     {
         "title":   'Eggs',
         "image":   '/vsafe/img/eggs.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','protein'],
         "vt":      true,
         "vg":      false
@@ -109,7 +109,7 @@ var all_tiles = [
     {
         "title":   'Flour',
         "image":   '/vsafe/img/flour.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','grain'],
         "vt":      true,
         "vg":      true
@@ -117,7 +117,7 @@ var all_tiles = [
     {
         "title":   'Green Pepper',
         "image":   '/vsafe/img/greenPepper.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
         "vg":      true
@@ -125,7 +125,7 @@ var all_tiles = [
     {
         "title":   'Beef',
         "image":   '/vsafe/img/groundBeef.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','protein'],
         "vt":      false,
         "vg":      false
@@ -133,7 +133,7 @@ var all_tiles = [
     {
         "title":   'Hamburger',
         "image":   '/vsafe/img/hamburger.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','entree'],
         "vt":      false,
         "vg":      false
@@ -141,7 +141,7 @@ var all_tiles = [
     {
         "title":   'Hummus',
         "image":   '/vsafe/img/hummus.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','appetizer','snack'],
         "vt":      true,
         "vg":      true
@@ -149,7 +149,7 @@ var all_tiles = [
     {
         "title":   'Margherita Pizza',
         "image":   '/vsafe/img/margheritaPizza.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','entree'],
         "vt":      true,
         "vg":      false
@@ -157,7 +157,7 @@ var all_tiles = [
     {
         "title":   'Milk',
         "image":   '/vsafe/img/milk.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
         "vg":      false
@@ -165,7 +165,7 @@ var all_tiles = [
     {
         "title":   'Mushrooms',
         "image":   '/vsafe/img/mushroom.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
         "vg":      true
@@ -173,7 +173,7 @@ var all_tiles = [
     {
         "title":   'Mushroom Souffle',
         "image":   '/vsafe/img/mushroomSouffle.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','entree'],
         "vt":      true,
         "vg":      false
@@ -181,7 +181,7 @@ var all_tiles = [
     {
         "title":   'Olive Oil',
         "image":   '/vsafe/img/oliveOil.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','condiment','other'],
         "vt":      true,
         "vg":      true
@@ -189,7 +189,7 @@ var all_tiles = [
     {
         "title":   'Onion',
         "image":   '/vsafe/img/onion.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
         "vg":      true
@@ -197,7 +197,7 @@ var all_tiles = [
     {
         "title":   'Peanut Butter',
         "image":   '/vsafe/img/peanutButter.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','protein','condiment'],
         "vt":      true,
         "vg":      true
@@ -205,7 +205,7 @@ var all_tiles = [
     {
         "title":   'Apple Wedges and Peanut Butter',
         "image":   '/vsafe/img/peanutButterApple.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','snack'],
         "vt":      true,
         "vg":      true
@@ -213,7 +213,7 @@ var all_tiles = [
     {
         "title":   'Quinoa',
         "image":   '/vsafe/img/quinoa.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','grain'],
         "vt":      true,
         "vg":      true
@@ -221,7 +221,7 @@ var all_tiles = [
     {
         "title":   'Sriracha',
         "image":   '/vsafe/img/sriracha.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','condiment'],
         "vt":      true,
         "vg":      true
@@ -229,7 +229,7 @@ var all_tiles = [
     {
         "title":   'Spicy Stir Fry',
         "image":   '/vsafe/img/srirachaStirFry.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','entree'],
         "vt":      true,
         "vg":      true
@@ -237,7 +237,7 @@ var all_tiles = [
     {
         "title":   'Sugar',
         "image":   '/vsafe/img/sugar.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','other'],
         "vt":      true,
         "vg":      true
@@ -245,7 +245,7 @@ var all_tiles = [
     {
         "title":   'Sugar Cookies',
         "image":   '/vsafe/img/sugarCookies.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','snack'],
         "vt":      true,
         "vg":      false
@@ -253,7 +253,7 @@ var all_tiles = [
     {
         "title":   'Tofu',
         "image":   '/vsafe/img/tofu.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','protein'],
         "vt":      true,
         "vg":      true
@@ -261,7 +261,7 @@ var all_tiles = [
     {
         "title":   'Tomato',
         "image":   '/vsafe/img/tomato.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','fruit','vegetable'],
         "vt":      true,
         "vg":      true
@@ -269,7 +269,7 @@ var all_tiles = [
     {
         "title":   'Vegan Cheese',
         "image":   '/vsafe/img/veganCheese.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
         "vg":      true
@@ -277,7 +277,7 @@ var all_tiles = [
     {
         "title":   'Vegetable Medley',
         "image":   '/vsafe/img/vegetableMedley.jpg',
-        "link":    '/vsafe/dish/',
+        "link":    '/vsafe/browse/dish/',
         "tags":    ['dish','entree'],
         "vt":      true,
         "vg":      true
@@ -285,7 +285,7 @@ var all_tiles = [
     {
         "title":   'Wheat Bread',
         "image":   '/vsafe/img/wheatBread.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','grain'],
         "vt":      true,
         "vg":      true
@@ -293,7 +293,7 @@ var all_tiles = [
     {
         "title":   'Zucchini',
         "image":   '/vsafe/img/zucchini.jpg',
-        "link":    '/vsafe/ingredient/',
+        "link":    '/vsafe/browse/ingredient/',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
         "vg":      true
