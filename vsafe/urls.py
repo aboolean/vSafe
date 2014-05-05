@@ -20,6 +20,6 @@ urlpatterns = patterns('',
     url(r'^$', views.index),
     url(r'^learn/', views.learn),
     url(r'^browse/$', views.browse),
-    url(r'^browse/ingredient/[0-9]*$', views.ingredient),
-    url(r'^browse/dish/[0-9]*$', views.dish),
+    url(r'^browse/ingredient/(?P<id_num>[0-9]*)$', views.ingredient),
+    url(r'^browse/dish/(?P<id_num>[0-9]*)$', views.dish),
 )

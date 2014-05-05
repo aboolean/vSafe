@@ -12,19 +12,19 @@ def learn (request):
 	html = t.render(Context({}))
 	return HttpResponse(html)
 
-def browse (request):
+def browse (request, id_num):
 	t = get_template('browse.html')
 	html = t.render(Context({}))
 	return HttpResponse(html)
 
-def ingredient (request):
+def ingredient (request, id_num):
 	t = get_template('ingredient.html')
-	html = t.render(Context({}))
+	html = t.render(Context({'id_num':id_num}))
 	return HttpResponse(html)
 
 def dish (request):
 	t = get_template('dish.html')
-	html = t.render(Context({}))
+	html = t.render(Context({'id_num':id_num}))
 	return HttpResponse(html)
 
 # def serve(request, path, document_root, show_indexes=False)
