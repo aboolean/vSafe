@@ -71,20 +71,8 @@
                 }
             }
             if ($('.checkbox-box:not(:checked)').length == $('.checkbox-box').length) {
-                    $('.result').show();
-                }
-
-            });
-
-            createTiles(all_tiles, $('#results_window'));
-
-            $('.ui.dimmable').dimmer({
-                on: 'hover',
-                duration: {
-                    show : 200,
-                    hide : 200
-                }
-            });
+                $('.result').show();
+            }
 
             $("#browse_nav").addClass("active");
         });

@@ -3089,7 +3089,7 @@ body > .ui.grid {
 }
 /* Responsive */
 @media only screen and (max-width: 768px) {
-  .ui.table {
+/*  .ui.table {
     display: block;
     padding: 0em;
   }
@@ -3119,7 +3119,7 @@ body > .ui.grid {
     -webkit-box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.1) inset !important;
     box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.1) inset !important;
     padding-bottom: 1em;
-  }
+  }*/
   /* Clear BG Colors */
   .ui.table tr > td.warning,
   .ui.table tr > td.error,

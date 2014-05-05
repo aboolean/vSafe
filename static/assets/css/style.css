@@ -1,14 +1,12 @@
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0 0 3em 0;
     background-color: #fbfbfb;
     font-family: 'Nunito', 'Helvetica', 'Arial', sans-serif !important;
-}
-
-#index {
-    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    min-height: 500px !important;
+    min-width: 661px !important;
+    padding: 0;
 }
 
 header {
@@ -17,22 +15,22 @@ header {
 
 #title {
     font-family: 'Lobster', cursive;
+    font-size: 5em;
     margin: 0 auto 0.2em;
     text-align: center;
-    font-size: 5em;
     z-index: 100;
 }
 
 #title a {
-    text-decoration: none;
     color: #88b653;
+    text-decoration: none;
 }
 
 nav {
     background-color: transparent !important;
     font-size: 1em !important;
-    width: 80%;
     margin: 0 auto !important;
+    width: 80%;
 }
 
 nav .item {
@@ -41,27 +39,23 @@ nav .item {
 }
 
 #search-home {
+    border-radius: 0.5em;
+    border: 1px solid #88b653;
+    font-size: 2em;
+    margin-top: 5em;
     margin: 0 auto;
     text-align: center;
-    font-size: 2em;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -245px;
-    border: 1px solid #88b653;
-    border-radius: 0.5em;
 }
 
 section {
-    padding:1em 0;
     background-color: transparent !important;
+    padding:1em 0;
 }
 
 section .overview {
     background-color: transparent !important;
-    width: 85%;
     margin: 0 auto !important;
+    width: 85%;
 }
 
 #vegetarianButton {
@@ -72,20 +66,20 @@ section .overview {
     padding-left: 20px;
 }
 
-table i{
+table i {
     float:right;
 }
 
-table a{
-    display:block;
+table a {
     color: inherit;
+    display:block;
     text-decoration: inherit;
 }
 
 #search-home input {
     background-color: transparent !important;
-    border: none !important;
     border-bottom: 0.5em #88b653 solid !important;
+    border: none !important;
     font-weight: bold;
 }
 
@@ -96,15 +90,15 @@ table a{
 
 #button-select,
 #button-deselect {
-    width: 161px;
-    text-align: center;
-    margin: 0 auto 0.7em auto;
     font-size: 0.8em;
+    margin: 0 auto 0.7em auto;
+    text-align: center;
+    width: 161px;
 }
 
 .checkbox:hover {
-    cursor: pointer;
     background-color: #d8d8d8 !important;
+    cursor: pointer;
 }
 
 .checkbox label,
@@ -114,14 +108,14 @@ table a{
 
 
 .result {
-    width: 30%;
-    height: 250px;
-    margin: 1.5%;
     background-color: #88b653;
-    float: left;
     border-radius: 0.5em;
     border: 1px solid #909090;
     color: #fbfbfb;
+    float: left;
+    height: 250px;
+    margin: 1.5%;
+    width: 29%;
 }
 
 .result:hover {
@@ -130,20 +124,20 @@ table a{
 
 .result-img,
 .food-img {
-    width: 100%;
-    height: 60%;
-    background-size: cover;
-    border-radius: 0.5em 0.5em 0 0;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0.5em 0.5em 0 0;
+    height: 60%;
+    width: 100%;
 }
 
 .result-info {
-    text-align: center;
-    margin: 0 auto;
-    -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
+    -webkit-user-select: none; /* Chrome/Safari */
+    margin: 0 auto;
+    text-align: center;
 }
 
 .result-info .label {
@@ -151,8 +145,8 @@ table a{
 }
 
 .result-title {
-    text-align: center;
     margin: 4% 0;
+    text-align: center;
 }
 
 .ui.label.red {
@@ -160,8 +154,8 @@ table a{
 }
 
 #food-display {
-    border: 1px #909090 solid;
     border-radius: 0.5em;
+    border: 1px #909090 solid;
 }
 
 .food-img {
@@ -179,4 +173,66 @@ input {
 
 .table-vegetables-cell {
     background-color: white;
+}
+
+.header.item.checkbox {
+    display: block;
+}
+
+/************************
+**
+** Responsive Styling
+**
+************************/
+@media only screen and (min-width: 788px) {
+    /* tablets and desktop */
+}
+
+@media only screen and (max-width: 907px) {
+    .result {
+        width: 45%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 805px) {
+    .menu.right {
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 656px) and (max-width: 767px) {
+    /* phones */
+    .menu.right {
+        width: 40%;
+    }
+
+    .result {
+        width: 45% !important;
+    }
+
+    nav {
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 655px) {
+    .result {
+        width: 45% !important;
+    }
+
+    #search-home {
+        margin-top: 1em;
+    }
+
+    nav {
+        width: 95%;
+    }
+
+    .menu.right {
+        width: 39%;
+    }
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    /* portrait phones */
 }
