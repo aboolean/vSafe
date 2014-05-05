@@ -1,4 +1,167 @@
-{% extends "browsebg.html"%}
+<!doctype html>
+<html lang="en">
+<head>
+    {% include jsimports_browse %}
+    <script src="{% static 'assets/js/tiles.js' %}"></script>
 
-{% block javascript %}
-{% endblock %}
+    <script>
+        $(document).ready(function(){
+            var dishes = ['appetizer','entree','dessert','snack'];
+            var ingredients = ['fruit','vegetable','grain','protein','dairy','condiment','other'];
+
+            $('#button-select').click(function() {
+                $('.checkbox-box').prop('checked',true);
+            });
+
+            $('#button-deselect').click(function() {
+                $('.checkbox-box').prop('checked',false);
+            });
+
+            $('.checkbox').click(function(){
+                var isChecked = $(this).children('input').prop("checked");
+
+            // Check the selected box
+            if (isChecked==undefined || isChecked==false){
+                checkState=true;
+                $(this).children('input').prop('checked',checkState);
+            } else {
+                checkState=false;
+                $(this).children('input').prop('checked',checkState);
+            }
+
+            // If a header is checked, check all of its children
+            var labelID = $(this).children('input').prop('id');
+            console.log(labelID);
+            if (labelID == 'checkbox-dish'){
+                for (var i=0; i<dishes.length;i++){
+                    var input = "#checkbox-"+dishes[i];
+                    $(input).prop('checked',checkState);
+                }
+            } else if (labelID == 'checkbox-ingredient'){
+                for (var i=0; i<ingredients.length;i++){
+                    var input = "#checkbox-"+ingredients[i];
+                    $(input).prop('checked',checkState);
+                }
+            }
+
+            // If a child is unchecked, uncheck the header
+            for (var i=0; i<dishes.length;i++){
+                if (labelID=="checkbox-"+dishes[i]){
+                    $('#checkbox-dishes').prop('checked',false);
+                }
+                if ($("#checkbox-"+dishes[i]).is(":checked")){
+                    $("."+(dishes[i])).show();
+
+                } else {
+                    $("."+(dishes[i])).hide();
+                }
+            }
+
+            for (var i=0; i<ingredients.length;i++){
+                if (labelID=="checkbox-"+ingredients[i]){
+                    $('#checkbox-ingredients').prop('checked',false);
+                }
+
+                if ($("#checkbox-"+ingredients[i]).is(":checked")){
+                    $("."+(ingredients[i])).show();
+
+                } else {
+                    $("."+(ingredients[i])).hide();
+                }
+            }
+            if ($('.checkbox-box:not(:checked)').length == $('.checkbox-box').length) {
+                    $('.result').show();
+                }
+
+            });
+
+            createTiles(all_tiles, $('#results_window'));
+
+            $('.ui.dimmable').dimmer({
+                on: 'hover',
+                duration: {
+                    show : 200,
+                    hide : 200
+                }
+            });
+        });
+        
+        $(document).ready(function(){
+            $("#browse_nav").addClass("active");
+        }
+    </script>
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <section class="ui page grid stackable relaxed">
+        <div class="row">
+            <div class="four wide column">
+                <div class="ui button" id="button-select">Select All</div>
+                <div class="ui button" id="button-deselect">Deselect All</div>
+                <div class="ui vertical menu compact form">
+                    <div class="header item checkbox dropdown">
+                        <i class="food icon green"></i>
+                        <input type="checkbox" class="checkbox-box" id="checkbox-dish">
+                        <label>Dish</label>
+                    </div>
+                    <div class="menu">
+                        <div class="item checkbox">
+                            <input type="checkbox" class="checkbox-box" id="checkbox-appetizer">
+                            <label>Appetizer</label>
+                        </div>
+                        <div class="item checkbox">
+                            <input type="checkbox" class="checkbox-box" id="checkbox-entree">
+                            <label>Entree</label>
+                        </div>
+                        <div class="item checkbox">
+                            <input type="checkbox" class="checkbox-box" id="checkbox-dessert">
+                            <label>Dessert</label>
+                        </div>
+                        <div class="item checkbox">
+                            <input type="checkbox" class="checkbox-box" id="checkbox-snack">
+                            <label>Snack</label>
+                        </div>
+                    </div>
+
+                    <div class="header item checkbox">
+                        <i class="leaf icon green"></i>
+                        <input type="checkbox" class="checkbox-box" id="checkbox-ingredient">
+                        <label>Ingredient</label>
+                    </div>
+                    <div class="item checkbox">
+                        <input type="checkbox" class="checkbox-box" id="checkbox-fruit">
+                        <label>Fruit</label>
+                    </div>
+                    <div class="item checkbox">
+                        <input type="checkbox" class="checkbox-box" id="checkbox-vegetable">
+                        <label>Vegetable</label>
+                    </div>
+                    <div class="item checkbox">
+                        <input type="checkbox" class="checkbox-box" id="checkbox-grain">
+                        <label>Grain</label>
+                    </div>
+                    <div class="item checkbox">
+                        <input type="checkbox" class="checkbox-box" id="checkbox-protein">
+                        <label>Protein</label>
+                    </div>
+                    <div class="item checkbox">
+                        <input type="checkbox" class="checkbox-box" id="checkbox-dairy">
+                        <label>Dairy</label>
+                    </div>
+                    <div class="item checkbox">
+                        <input type="checkbox" class="checkbox-box" id="checkbox-condiment">
+                        <label>Condiment</label>
+                    </div>
+                    <div class="item checkbox">
+                        <input type="checkbox" class="checkbox-box" id="checkbox-other">
+                        <label>Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="twelve wide column" id="results_window"></div>
+        </div>
+    </section>
+</body>
+</html>
