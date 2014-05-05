@@ -17,4 +17,14 @@ def browse (request):
 	html = t.render(Context({}))
 	return HttpResponse(html)
 
+def ingredient (request):
+	t = get_template('ingredient.html')
+	html = t.render(Context({}))
+	return HttpResponse(html)
+
+def dish (request):
+	t = get_template('dish.html')
+	html = t.render(Context({}))
+	return HttpResponse(html)
+
 # def serve(request, path, document_root, show_indexes=False)

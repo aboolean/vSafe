@@ -1,1 +1,149 @@
-{% extends "browsebg.html"%}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    {% include "jsimports.html" %}
+    <script src="{% static 'assets/js/tiles.js' %}"></script>
+    <script>
+        
+        // ITEM PARAMETERS
+        /*
+            'item_name' and keys of 'map_tiles' must correspond
+            to existing items in < tiles.js >.
+            
+            Title, image, tags, vt/vg will be populated automatically.
+        */
+        var item_name = "Apple"
+        var nutrients = {"protein":     0,
+                         "iron":        10,
+                         "calcium":     0,
+                         "fiber":       5,
+                         "carbs":       2,
+                         "fats":        0
+                        };
+        
+        var dishes = [
+            map_tiles['Vegetable Medley'],
+        ];
+        
+        $(document).ready(function(){
+            var item = map_tiles[item_name];
+            
+            var percents = $.map(nutrients, function(val, key) {return val;});
+            var nutrition = Object.keys(nutrients);
+
+            for (var i=0;i<percents.length;i++){
+                var fill = percents[i];
+                if (fill > 100)
+                    fill = 100;
+                var chart = createPie("Protein", "30px", "#ddd", 1, [fill], ["#88b653"]);
+                var percent = percents[i] + "%";
+                var chartTag = "#chart-"+nutrition[i];
+                var percentTag = "#percent-"+nutrition[i];
+                console.log(chart);
+                $(chartTag).append(chart);
+                $(percentTag).append(percent);
+            }
+            
+            // color vt/vg
+            if (item['vt'] == true){
+                $('#label_vt').addClass('green');
+            } else {
+                $('#label_vt').addClass('red');
+            }
+            
+            if (item['vg'] == true){
+                $('#label_vg').addClass('green');
+            } else {
+                $('#label_vg').addClass('red');
+            }
+
+            // populate specifics
+            $('#item_name').html(item['title']);
+            var item_img_url = 'url(' + item['image'] + ')';
+            $('#item_img').css('background-image', item_img_url);
+
+            // populate dishes section
+            createTiles(dishes, $('.tiles.dishes'));
+
+            $('.ui.dimmable')
+            .dimmer({
+                on: 'hover',
+                duration: {
+                    show : 200,
+                    hide : 200
+                }
+            });
+
+            $("#browse_nav").addClass("active");
+        });
+        
+    
+</script>
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <section class="ui page grid stackable relaxed">
+        <div class="row">
+            <div class="six wide column">
+                <div class="column center aligned" id="food-display">
+                    <div class="food-img" id='item_img'></div>
+                    <h1 id='item_name'></h1>
+                    <div class="ui label" id="label_vt">
+                        Vegetarian
+                    </div>
+                    <div class="ui label" id="label_vg">
+                        Vegan
+                    </div>
+                    <table class="ui table segment">
+                        <tbody>
+                            <tr>
+                                <td>Protein</td>
+                                <td id="chart-protein"></td>
+                                <td id="percent-protein"></td>
+                            </tr>
+                            <tr>
+                                <td>Iron</td>
+                                <td id="chart-iron"></td>
+                                <td id="percent-iron"></td>
+                            </tr>
+                            <tr>
+                                <td>Calcium</td>
+                                <td id="chart-calcium"></td>
+                                <td id="percent-calcium"></td>
+                            </tr>
+                            <tr>
+                                <td>Fiber</td>
+                                <td id="chart-fiber"></td>
+                                <td id="percent-fiber"></td>
+                            </tr>
+                            <tr>
+                                <td>Carbs</td>
+                                <td id="chart-carbs"></td>
+                                <td id="percent-carbs"></td>
+                            </tr>
+                            <tr>
+                                <td>Fats</td>
+                                <td id="chart-fats"></td>
+                                <td id="percent-fats"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="ten wide column">
+            <h2 class="food-title dishes">Dishes</h2>
+                <div class="tiles dishes"></div>
+
+                
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
