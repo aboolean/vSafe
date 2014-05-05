@@ -4,5 +4,5 @@ from django.template import Context
 # Create your views here.
 def index (request):
 	t = get_template('index.html')
-	html = t.render()
+	html = t.render(Context({}))
 	return HttpResponse(html)
