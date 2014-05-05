@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from django.views.generic.base import TemplateView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'website.views.index'),
 )
-  
+
+urlpatterns += staticfiles_urlpatterns()
