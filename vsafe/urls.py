@@ -16,4 +16,4 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'website.views.index'),
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
