@@ -52,7 +52,7 @@ function createTiles(tileList, section) {
 var all_tiles = [
     {
         "title":   'Apple',
-        "image":   '../images/apple.jpg',
+        "image":   '/vsafe/img/apple.jpg',
         "link":    'apple.html',
         "tags":    ['ingredient','fruit'],
         "vt":      true,
@@ -60,7 +60,7 @@ var all_tiles = [
     },
     {
         "title":   'Barley',
-        "image":   '../images/barley.jpg',
+        "image":   '/vsafe/img/barley.jpg',
         "link":    'barley.html',
         "tags":    ['ingredient','grain'],
         "vt":      true,
@@ -68,7 +68,7 @@ var all_tiles = [
     },
     {
         "title":   'Basil',
-        "image":   '../images/basil.jpg',
+        "image":   '/vsafe/img/basil.jpg',
         "link":    'basil.html',
         "tags":    ['ingredient','other'],
         "vt":      true,
@@ -76,7 +76,7 @@ var all_tiles = [
     },
     {
         "title":   'Butter',
-        "image":   '../images/butter.jpg',
+        "image":   '/vsafe/img/butter.jpg',
         "link":    'butter.html',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
@@ -84,7 +84,7 @@ var all_tiles = [
     },
     {
         "title":   'Cheese',
-        "image":   '../images/cheese.jpg',
+        "image":   '/vsafe/img/cheese.jpg',
         "link":    'cheese.html',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
@@ -92,7 +92,7 @@ var all_tiles = [
     },
     {
         "title":   'Chickpeas',
-        "image":   '../images/chickpeas.jpg',
+        "image":   '/vsafe/img/chickpeas.jpg',
         "link":    'chickpeas.html',
         "tags":    ['ingredient','protein'],
         "vt":      true,
@@ -100,7 +100,7 @@ var all_tiles = [
     },
     {
         "title":   'Eggs',
-        "image":   '../images/eggs.jpg',
+        "image":   '/vsafe/img/eggs.jpg',
         "link":    'eggs.html',
         "tags":    ['ingredient','protein'],
         "vt":      true,
@@ -108,7 +108,7 @@ var all_tiles = [
     },
     {
         "title":   'Flour',
-        "image":   '../images/flour.jpg',
+        "image":   '/vsafe/img/flour.jpg',
         "link":    'flour.html',
         "tags":    ['ingredient','grain'],
         "vt":      true,
@@ -116,7 +116,7 @@ var all_tiles = [
     },
     {
         "title":   'Green Pepper',
-        "image":   '../images/greenPepper.jpg',
+        "image":   '/vsafe/img/greenPepper.jpg',
         "link":    'green_pepper.html',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
@@ -124,7 +124,7 @@ var all_tiles = [
     },
     {
         "title":   'Beef',
-        "image":   '../images/groundBeef.jpg',
+        "image":   '/vsafe/img/groundBeef.jpg',
         "link":    'beef.html',
         "tags":    ['ingredient','protein'],
         "vt":      false,
@@ -132,7 +132,7 @@ var all_tiles = [
     },
     {
         "title":   'Hamburger',
-        "image":   '../images/hamburger.jpg',
+        "image":   '/vsafe/img/hamburger.jpg',
         "link":    'hamburger.html',
         "tags":    ['dish','entree'],
         "vt":      false,
@@ -140,7 +140,7 @@ var all_tiles = [
     },
     {
         "title":   'Hummus',
-        "image":   '../images/hummus.jpg',
+        "image":   '/vsafe/img/hummus.jpg',
         "link":    'hummus.html',
         "tags":    ['dish','appetizer','snack'],
         "vt":      true,
@@ -148,7 +148,7 @@ var all_tiles = [
     },
     {
         "title":   'Margherita Pizza',
-        "image":   '../images/margheritaPizza.jpg',
+        "image":   '/vsafe/img/margheritaPizza.jpg',
         "link":    'margherita_pizza.html',
         "tags":    ['dish','entree'],
         "vt":      true,
@@ -156,7 +156,7 @@ var all_tiles = [
     },
     {
         "title":   'Milk',
-        "image":   '../images/milk.jpg',
+        "image":   '/vsafe/img/milk.jpg',
         "link":    'milk.html',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
@@ -164,7 +164,7 @@ var all_tiles = [
     },
     {
         "title":   'Mushrooms',
-        "image":   '../images/mushroom.jpg',
+        "image":   '/vsafe/img/mushroom.jpg',
         "link":    'mushrooms.html',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
@@ -172,7 +172,7 @@ var all_tiles = [
     },
     {
         "title":   'Mushroom Souffle',
-        "image":   '../images/mushroomSouffle.jpg',
+        "image":   '/vsafe/img/mushroomSouffle.jpg',
         "link":    'mushroom_souffle.html',
         "tags":    ['dish','entree'],
         "vt":      true,
@@ -180,7 +180,7 @@ var all_tiles = [
     },
     {
         "title":   'Olive Oil',
-        "image":   '../images/oliveOil.jpg',
+        "image":   '/vsafe/img/oliveOil.jpg',
         "link":    'olive_oil.html',
         "tags":    ['ingredient','condiment','other'],
         "vt":      true,
@@ -188,7 +188,7 @@ var all_tiles = [
     },
     {
         "title":   'Onion',
-        "image":   '../images/onion.jpg',
+        "image":   '/vsafe/img/onion.jpg',
         "link":    'onion.html',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
@@ -196,7 +196,7 @@ var all_tiles = [
     },
     {
         "title":   'Peanut Butter',
-        "image":   '../images/peanutButter.jpg',
+        "image":   '/vsafe/img/peanutButter.jpg',
         "link":    'peanut_butter.html',
         "tags":    ['ingredient','protein','condiment'],
         "vt":      true,
@@ -204,7 +204,7 @@ var all_tiles = [
     },
     {
         "title":   'Apple Wedges and Peanut Butter',
-        "image":   '../images/peanutButterApple.jpg',
+        "image":   '/vsafe/img/peanutButterApple.jpg',
         "link":    'apple_wedges_and_peanut_butter.html',
         "tags":    ['dish','snack'],
         "vt":      true,
@@ -212,7 +212,7 @@ var all_tiles = [
     },
     {
         "title":   'Quinoa',
-        "image":   '../images/quinoa.jpg',
+        "image":   '/vsafe/img/quinoa.jpg',
         "link":    'quinoa.html',
         "tags":    ['ingredient','grain'],
         "vt":      true,
@@ -220,7 +220,7 @@ var all_tiles = [
     },
     {
         "title":   'Sriracha',
-        "image":   '../images/sriracha.jpg',
+        "image":   '/vsafe/img/sriracha.jpg',
         "link":    'sriracha.html',
         "tags":    ['ingredient','condiment'],
         "vt":      true,
@@ -228,7 +228,7 @@ var all_tiles = [
     },
     {
         "title":   'Spicy Stir Fry',
-        "image":   '../images/srirachaStirFry.jpg',
+        "image":   '/vsafe/img/srirachaStirFry.jpg',
         "link":    'spicy_stir_fry.html',
         "tags":    ['dish','entree'],
         "vt":      true,
@@ -236,7 +236,7 @@ var all_tiles = [
     },
     {
         "title":   'Sugar',
-        "image":   '../images/sugar.jpg',
+        "image":   '/vsafe/img/sugar.jpg',
         "link":    'sugar.html',
         "tags":    ['ingredient','other'],
         "vt":      true,
@@ -244,7 +244,7 @@ var all_tiles = [
     },
     {
         "title":   'Sugar Cookies',
-        "image":   '../images/sugarCookies.jpg',
+        "image":   '/vsafe/img/sugarCookies.jpg',
         "link":    'sugar_cookies.html',
         "tags":    ['dish','snack'],
         "vt":      true,
@@ -252,7 +252,7 @@ var all_tiles = [
     },
     {
         "title":   'Tofu',
-        "image":   '../images/tofu.jpg',
+        "image":   '/vsafe/img/tofu.jpg',
         "link":    'tofu.html',
         "tags":    ['ingredient','protein'],
         "vt":      true,
@@ -260,7 +260,7 @@ var all_tiles = [
     },
     {
         "title":   'Tomato',
-        "image":   '../images/tomato.jpg',
+        "image":   '/vsafe/img/tomato.jpg',
         "link":    'tomato.html',
         "tags":    ['ingredient','fruit','vegetable'],
         "vt":      true,
@@ -268,7 +268,7 @@ var all_tiles = [
     },
     {
         "title":   'Vegan Cheese',
-        "image":   '../images/veganCheese.jpg',
+        "image":   '/vsafe/img/veganCheese.jpg',
         "link":    'vegan_cheese.html',
         "tags":    ['ingredient','dairy'],
         "vt":      true,
@@ -276,7 +276,7 @@ var all_tiles = [
     },
     {
         "title":   'Vegetable Medley',
-        "image":   '../images/vegetableMedley.jpg',
+        "image":   '/vsafe/img/vegetableMedley.jpg',
         "link":    'vegetable_medly.html',
         "tags":    ['dish','entree'],
         "vt":      true,
@@ -284,7 +284,7 @@ var all_tiles = [
     },
     {
         "title":   'Wheat Bread',
-        "image":   '../images/wheatBread.jpg',
+        "image":   '/vsafe/img/wheatBread.jpg',
         "link":    'wheat_bread.html',
         "tags":    ['ingredient','grain'],
         "vt":      true,
@@ -292,7 +292,7 @@ var all_tiles = [
     },
     {
         "title":   'Zucchini',
-        "image":   '../images/zucchini.jpg',
+        "image":   '/vsafe/img/zucchini.jpg',
         "link":    'zucchini.html',
         "tags":    ['ingredient','vegetable'],
         "vt":      true,
