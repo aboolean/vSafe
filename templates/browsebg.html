@@ -5,14 +5,14 @@
     <title>vSafe</title>
 
     {% load static from staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/semantic.css" %}">
+    <link rel="stylesheet" type="text/css" href="/static/css/semantic.css">
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
 
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-    <script src="{% static "js/semantic.js" %}"></script>
-    <script src="{% static "js/jquery-ui-1.10.4.js" %}"></script>
+    <script src="/static/js/semantic.js"></script>
+    <script src="/static/js/jquery-ui-1.10.4.js"></script>
 
     {% block javascript %}
     {% endblock %}
@@ -20,11 +20,11 @@
 </head>
 <body>
     <header class="ui">
-        <h1 id="title"><a href="/">vSafe</a></h1>
+        <h1 id="title"><a href="index.html">vSafe</a></h1>
 
         <nav class="ui menu">
-            <a href="../index.html" class="item">HOME</a>
-            <a href="../learn/learn.html" class="item">LEARN</a>
+            <a href="index.html" class="item">HOME</a>
+            <a href="learn.html" class="item">LEARN</a>
             <a href="browse.html" class="item">BROWSE</a>
             <div class="right menu">
                 <div class="item">
