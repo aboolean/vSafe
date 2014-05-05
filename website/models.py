@@ -9,7 +9,7 @@ class Ingredient(models.Model):
     dishes = models.ManyToManyField('Dish', related_name='ingredients', null=True)
     substitutes = models.ManyToManyField('self', symmetrical=False, null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     class Meta:
@@ -26,7 +26,7 @@ class Dish(models.Model):
 
     similar = models.ManyToManyField('self', symmetrical=True, null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     class Meta:
@@ -44,7 +44,7 @@ class Details(model.Model):
     isVegetarian = models.BooleanField(blank=False)
     isVegan = models.BooleanField(blank=False)
 
-    def __str__(self):
+    def __unicode__(self):
         return str(self.protein) + ", " \
              + str(self.iron) + ", " \
              + str(self.calcium) + ", " \
