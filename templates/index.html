@@ -1,19 +1,20 @@
-{% extends "navbar.html"%}
+<!doctype html>
 
-{% block body_attributes %}
-    id="index"
-{% endblock %}
+<head>
+    {% include "jsimports.html"%}
+</head>
 
-{% block body_content %}
-<section class="ui grid">
-    <div class="two wide column"></div>
-    <div class="twelve wide column center aligned stackable divided grid">
-        <div class="column">
-            <div class="ui icon input" id="search-home">
-                <input type="text" placeholder="Apple, Carrot, etc." id="search-input">
-                <i class="circular inverted green search link icon"></i>
+<body id="index">
+    {% include "navbar.html"%}
+    <section class="ui grid">
+        <div class="two wide column"></div>
+        <div class="twelve wide column center aligned stackable divided grid">
+            <div class="column">
+                <div class="ui icon input" id="search-home">
+                    <input type="text" placeholder="Apple, Carrot, etc." id="search-input">
+                    <i class="circular inverted green search link icon"></i>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-{% endblock %}
+    </section>
+</body>
