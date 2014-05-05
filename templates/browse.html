@@ -21,59 +21,59 @@
             $('.checkbox').click(function(){
                 var isChecked = $(this).children('input').prop("checked");
 
-            // Check the selected box
-            if (isChecked==undefined || isChecked==false){
-                checkState=true;
-                $(this).children('input').prop('checked',checkState);
-            } else {
-                checkState=false;
-                $(this).children('input').prop('checked',checkState);
-            }
+                // Check the selected box
+                if (isChecked==undefined || isChecked==false){
+                    checkState=true;
+                    $(this).children('input').prop('checked',checkState);
+                } else {
+                    checkState=false;
+                    $(this).children('input').prop('checked',checkState);
+                }
 
-            // If a header is checked, check all of its children
-            var labelID = $(this).children('input').prop('id');
-            console.log(labelID);
-            if (labelID == 'checkbox-dish'){
+                // If a header is checked, check all of its children
+                var labelID = $(this).children('input').prop('id');
+                console.log(labelID);
+                if (labelID == 'checkbox-dish'){
+                    for (var i=0; i<dishes.length;i++){
+                        var input = "#checkbox-"+dishes[i];
+                        $(input).prop('checked',checkState);
+                    }
+                } else if (labelID == 'checkbox-ingredient'){
+                    for (var i=0; i<ingredients.length;i++){
+                        var input = "#checkbox-"+ingredients[i];
+                        $(input).prop('checked',checkState);
+                    }
+                }
+
+                // If a child is unchecked, uncheck the header
                 for (var i=0; i<dishes.length;i++){
-                    var input = "#checkbox-"+dishes[i];
-                    $(input).prop('checked',checkState);
+                    if (labelID=="checkbox-"+dishes[i]){
+                        $('#checkbox-dishes').prop('checked',false);
+                    }
+                    if ($("#checkbox-"+dishes[i]).is(":checked")){
+                        $("."+(dishes[i])).show();
+
+                    } else {
+                        $("."+(dishes[i])).hide();
+                    }
                 }
-            } else if (labelID == 'checkbox-ingredient'){
+
                 for (var i=0; i<ingredients.length;i++){
-                    var input = "#checkbox-"+ingredients[i];
-                    $(input).prop('checked',checkState);
+                    if (labelID=="checkbox-"+ingredients[i]){
+                        $('#checkbox-ingredients').prop('checked',false);
+                    }
+
+                    if ($("#checkbox-"+ingredients[i]).is(":checked")){
+                        $("."+(ingredients[i])).show();
+
+                    } else {
+                        $("."+(ingredients[i])).hide();
+                    }
                 }
-            }
-
-            // If a child is unchecked, uncheck the header
-            for (var i=0; i<dishes.length;i++){
-                if (labelID=="checkbox-"+dishes[i]){
-                    $('#checkbox-dishes').prop('checked',false);
+                if ($('.checkbox-box:not(:checked)').length == $('.checkbox-box').length) {
+                    $('.result').show();
                 }
-                if ($("#checkbox-"+dishes[i]).is(":checked")){
-                    $("."+(dishes[i])).show();
-
-                } else {
-                    $("."+(dishes[i])).hide();
-                }
-            }
-
-            for (var i=0; i<ingredients.length;i++){
-                if (labelID=="checkbox-"+ingredients[i]){
-                    $('#checkbox-ingredients').prop('checked',false);
-                }
-
-                if ($("#checkbox-"+ingredients[i]).is(":checked")){
-                    $("."+(ingredients[i])).show();
-
-                } else {
-                    $("."+(ingredients[i])).hide();
-                }
-            }
-            if ($('.checkbox-box:not(:checked)').length == $('.checkbox-box').length) {
-                $('.result').show();
-            }
-
+            });
             $("#browse_nav").addClass("active");
         });
     </script>
