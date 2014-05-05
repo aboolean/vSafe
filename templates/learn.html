@@ -1,168 +1,166 @@
 {% extends "jsimports.html"%}
 {% block javascript %}
-    <script>
-        $(document).ready(function(){
-            // whether or not we are on the vegetarian section
-            var vegetarian = true;
-            // buttons
-            var vegetarianButton = $("#vegetarianButton");
-            var veganButton = $("#veganButton");
-            // tabs
-            var summaryTab = $("#summaryTab");
-            var mealsTab = $("#mealsTab");
-            var ingredientsTab = $("#ingredientsTab");
-            var nutrientsTab = $("#nutrientsTab");
-            var currentTab = $("#summaryTab");
-            // content
-            var vegetarianContent = $(".vegetarian");
-            var veganContent = $(".vegan");
-            var currentDietContent = $(".vegetarian");
-            var summaryContent = $(".summary");
-            var mealsContent = $(".meals");
-            var ingredientsContent = $(".ingredients");
-            var nutrientsContent = $(".nutrients");
-            var currentContent = $(".summary");
+<script>
+    $(document).ready(function(){
+// whether or not we are on the vegetarian section
+var vegetarian = true;
+// buttons
+var vegetarianButton = $("#vegetarianButton");
+var veganButton = $("#veganButton");
+// tabs
+var summaryTab = $("#summaryTab");
+var mealsTab = $("#mealsTab");
+var ingredientsTab = $("#ingredientsTab");
+var nutrientsTab = $("#nutrientsTab");
+var currentTab = $("#summaryTab");
+// content
+var vegetarianContent = $(".vegetarian");
+var veganContent = $(".vegan");
+var currentDietContent = $(".vegetarian");
+var summaryContent = $(".summary");
+var mealsContent = $(".meals");
+var ingredientsContent = $(".ingredients");
+var nutrientsContent = $(".nutrients");
+var currentContent = $(".summary");
 
-            var clickable = true;
+var clickable = true;
 
-            // clears all background animations
-            var resetAnimations = function() {
-                summaryContent.removeClass("hidden visible animating fade down");
-                mealsContent.removeClass("hidden visible animating fade down");
-                ingredientsContent.removeClass("hidden visible animating fade down");
-                nutrientsContent.removeClass("hidden visible animating fade down");
+// clears all background animations
+var resetAnimations = function() {
+    summaryContent.removeClass("hidden visible animating fade down");
+    mealsContent.removeClass("hidden visible animating fade down");
+    ingredientsContent.removeClass("hidden visible animating fade down");
+    nutrientsContent.removeClass("hidden visible animating fade down");
 
-                summaryContent.removeAttr("style");
-                mealsContent.removeAttr("style");
-                ingredientsContent.removeAttr("style");
-                nutrientsContent.removeAttr("style");
+    summaryContent.removeAttr("style");
+    mealsContent.removeAttr("style");
+    ingredientsContent.removeAttr("style");
+    nutrientsContent.removeAttr("style");
 
-                summaryContent.addClass("hidden");
-                mealsContent.addClass("hidden");
-                ingredientsContent.addClass("hidden");
-                nutrientsContent.addClass("hidden");
+    summaryContent.addClass("hidden");
+    mealsContent.addClass("hidden");
+    ingredientsContent.addClass("hidden");
+    nutrientsContent.addClass("hidden");
 
-                currentContent.removeClass("hidden");
-                currentContent.addClass("visible");
-            };
+    currentContent.removeClass("hidden");
+    currentContent.addClass("visible");
+};
 
 
-            veganButton.click(function(){
-                if (clickable && vegetarian) {
-                    clickable = false;
-                    vegetarianButton.removeClass("green");
-                    veganButton.addClass("green");
-                    vegetarian = false;
+veganButton.click(function(){
+    if (clickable && vegetarian) {
+        clickable = false;
+        vegetarianButton.removeClass("green");
+        veganButton.addClass("green");
+        vegetarian = false;
 
-                    vegetarianContent.transition("horizontal flip", "200ms", function(){
-                        veganContent.transition("horizontal flip", "200ms", function(){
-                            resetAnimations();
-                            clickable = true;
-                        });
-                    });
-
-                    currentDietContent = veganContent
-                }
-            });
-
-            vegetarianButton.click(function(){
-                if (clickable && !vegetarian) {
-                    clickable = false;
-                    veganButton.removeClass("green");
-                    vegetarianButton.addClass("green");
-                    vegetarian = true;
-
-                    resetAnimations();
-                    veganContent.transition("horizontal flip", "200ms", function(){
-                        vegetarianContent.transition("horizontal flip", "200ms", function(){
-                            resetAnimations();
-                            clickable = true;
-                        });
-                    });
-
-                    currentDietContent = vegetarianContent;
-                }
-            });
-
-            summaryTab.click(function(){
-                if (clickable && currentTab != summaryTab) {
-                    clickable = false;
-                    currentTab.removeClass("active");
-                    summaryTab.addClass("active");
-
-                    resetAnimations();
-                    currentContent.transition("fade down", "200ms", function(){
-                        currentContent.addClass("hidden");
-                        summaryContent.transition("fade down", "200ms", function(){
-                            resetAnimations();
-                            clickable = true;
-                        });
-                    });
-
-                    currentTab = summaryTab;
-                    currentContent = summaryContent;
-                }
-            });
-
-            mealsTab.click(function(){
-                if (clickable && currentTab != mealsTab) {
-                    clickable = false;
-                    currentTab.removeClass("active");
-                    mealsTab.addClass("active");
-
-                    currentContent.transition("fade down", "200ms", function(){
-                        currentContent.addClass("hidden");
-                        mealsContent.transition("fade down", "200ms", function(){
-                            resetAnimations();
-                            clickable = true;
-                        });
-                    });
-
-                    currentTab = mealsTab;
-                    currentContent = mealsContent;
-                }
-            });
-
-            ingredientsTab.click(function(){
-                if (clickable && currentTab != ingredientsTab) {
-                    clickable = false;
-                    currentTab.removeClass("active");
-                    ingredientsTab.addClass("active");
-
-                    currentContent.transition("fade down", "200ms", function(){
-                        currentContent.addClass("hidden");
-                        ingredientsContent.transition("fade down", "200ms", function(){
-                            resetAnimations();
-                            clickable = true;
-                        });
-                    });
-
-                    currentTab = ingredientsTab;
-                    currentContent = ingredientsContent;
-                }
-            });
-
-            nutrientsTab.click(function(){
-                if (clickable && currentTab != nutrientsTab) {
-                    clickable = false;
-                    currentTab.removeClass("active");
-                    nutrientsTab.addClass("active");
-
-                    currentContent.transition("fade down", "200ms", function(){
-                        currentContent.addClass("hidden");
-                        nutrientsContent.transition("fade down", "200ms", function(){
-                            resetAnimations();
-                            clickable = true;
-                        });
-                    });
-
-                    currentTab = nutrientsTab;
-                    currentContent = nutrientsContent;
-                }
+        vegetarianContent.transition("horizontal flip", "200ms", function(){
+            veganContent.transition("horizontal flip", "200ms", function(){
+                resetAnimations();
+                clickable = true;
             });
         });
-}
 
+        currentDietContent = veganContent
+    }
+});
+
+vegetarianButton.click(function(){
+    if (clickable && !vegetarian) {
+        clickable = false;
+        veganButton.removeClass("green");
+        vegetarianButton.addClass("green");
+        vegetarian = true;
+
+        resetAnimations();
+        veganContent.transition("horizontal flip", "200ms", function(){
+            vegetarianContent.transition("horizontal flip", "200ms", function(){
+                resetAnimations();
+                clickable = true;
+            });
+        });
+
+        currentDietContent = vegetarianContent;
+    }
+});
+
+summaryTab.click(function(){
+    if (clickable && currentTab != summaryTab) {
+        clickable = false;
+        currentTab.removeClass("active");
+        summaryTab.addClass("active");
+
+        resetAnimations();
+        currentContent.transition("fade down", "200ms", function(){
+            currentContent.addClass("hidden");
+            summaryContent.transition("fade down", "200ms", function(){
+                resetAnimations();
+                clickable = true;
+            });
+        });
+
+        currentTab = summaryTab;
+        currentContent = summaryContent;
+    }
+});
+
+mealsTab.click(function(){
+    if (clickable && currentTab != mealsTab) {
+        clickable = false;
+        currentTab.removeClass("active");
+        mealsTab.addClass("active");
+
+        currentContent.transition("fade down", "200ms", function(){
+            currentContent.addClass("hidden");
+            mealsContent.transition("fade down", "200ms", function(){
+                resetAnimations();
+                clickable = true;
+            });
+        });
+
+        currentTab = mealsTab;
+        currentContent = mealsContent;
+    }
+});
+
+ingredientsTab.click(function(){
+    if (clickable && currentTab != ingredientsTab) {
+        clickable = false;
+        currentTab.removeClass("active");
+        ingredientsTab.addClass("active");
+
+        currentContent.transition("fade down", "200ms", function(){
+            currentContent.addClass("hidden");
+            ingredientsContent.transition("fade down", "200ms", function(){
+                resetAnimations();
+                clickable = true;
+            });
+        });
+
+        currentTab = ingredientsTab;
+        currentContent = ingredientsContent;
+    }
+});
+
+nutrientsTab.click(function(){
+    if (clickable && currentTab != nutrientsTab) {
+        clickable = false;
+        currentTab.removeClass("active");
+        nutrientsTab.addClass("active");
+
+        currentContent.transition("fade down", "200ms", function(){
+            currentContent.addClass("hidden");
+            nutrientsContent.transition("fade down", "200ms", function(){
+                resetAnimations();
+                clickable = true;
+            });
+        });
+
+        currentTab = nutrientsTab;
+        currentContent = nutrientsContent;
+    }
+});
+});
 </script>
 {% endblock %}
 
@@ -190,149 +188,629 @@
         <div class="ui page grid overview section">
             <div class="sixteen wide column">
                 <div class="ui icon buttons">
-                  <div class="ui green button" id="vegetarianButton">Vegetarian</div>
-                  <div class="or"/>
-                  <div class="ui button" id="veganButton">Vegan</div>
-              </div>
-          </div>
-
-          <div class="ui secondary green pointing menu">
-            <a class="active item" id="summaryTab">
-              Summary
-          </a>
-          <a class="item" id="mealsTab">
-              Sample Meals
-          </a>
-          <a class="item" id="ingredientsTab">
-              Basic Ingredients
-          </a>
-          <a class="item" id="nutrientsTab">
-              Nutrients
-          </a>
-      </div>
-
-      <div class="ui content sixteen wide column">
-        <!-- ==================================== VEGETARIAN SECTION ==================================== -->
-        <div class="ui vegetarian transition visible">
-            <!-- ------------------------------------ SUMMARY ------------------------------------ -->
-            <div  class="ui transition visible summary">
-                <h2 class="ui header">Overview</h2>
-                <div class="ui segment">
-                    <p>
-                        Vegetarianism refers to a diet devoid of meat, including red meat, poultry, seafood, or the flesh of any other animal. Some vegetarians may also
-                        choose to avoid all animal by-products, including some oils and gelatins, which are sometimes used in candies, yogurts, or fried foods. It is always important
-                        to check the label before purchasing any food item in order to ensure it does not contain any ingredient you are trying to avoid.
-                    </p>
-                    <p>
-                        Switching to vegetarianism may seem daunting, but there are a few simple steps to make the transition easier. If you're not sure you can go cold turkey
-                        on meat (no pun intended), you can start by eliminating red meat and gradually phase out other meats from there. Much of what you're eating on a day-to-day basis may be vegetarian already -- many pasta dishes and salads are meatless, and serveral common snack foods such as dried fruit, granola bars, cheese sticks, and chips meet the criteria as well. You can also search for vegetarian restuarants in your area, and suggest one next time you go out to eat with friends. Who knows, they may even be convinced to join you in your quest to revamp your diet!
-                    </p>
-
-                </div>
-
-                <h2 class="ui header">Motivations</h2>
-                <div class="ui segment">
-                    <p>
-                        There are a variety of good reasons to switch to a vegetarian diet. Some of the most common ones include:
-                    </p>
-                    <ul class="ui list">
-                        <p><li><strong>Ethical</strong></li>
-                            By being vegetarian, you are not contributing to the slaughter of animals for food. Billions of animals are killed each year to feed the world's population.
-                        </p>
-                        <p><li><strong>Practical</strong></li>
-                            Vegetarianism is associated with many health benefits, including lower cholesterol, lower Body Mass Index (BMI), and lower risk of heart attack. On average, vegetarians consume less saturated fat and cholesterol than meat eaters.
-                        </p>
-                        <p><li><strong>Environmental</strong></li>
-                            Raising animals for food is particularly taxing on the environment. The livestock industry contributes significantly to air and water pollution, land degradation, and climate change.
-                        </p>
-                    </ul>
-                </div>
-
-                <h2 class="ui header">Resources</h2>
-                <div class="ui segment">
-                    <a href="https://www.vrg.org" title="Information on vegetarian recipes, restaurants, and nutrition" margin="10px">Vegetarian Resource Group</a><br>
-                    <a href="http://www.choosemyplate.gov/healthy-eating-tips/tips-for-vegetarian.html" title="Nutrition advice for vegetarians" margin="10px">USDA Healthy Eating Tips</a><br>
-                    <a href="http://www.vegweb.com/" title="Vegetarian recipes" margin="10px">VegWeb</a>
+                    <div class="ui green button" id="vegetarianButton">Vegetarian</div>
+                    <div class="or"/>
+                    <div class="ui button" id="veganButton">Vegan</div>
                 </div>
             </div>
 
-            <!-- ------------------------------------ MEALS ------------------------------------ -->
-            <div class="ui transition hidden meals three column grid">
-                <div class="column">
-                    <h1 class="ui header">Breakfast</h1>
+            <div class="ui secondary green pointing menu">
+                <a class="active item" id="summaryTab">
+                    Summary
+                </a>
+                <a class="item" id="mealsTab">
+                    Sample Meals
+                </a>
+                <a class="item" id="ingredientsTab">
+                    Basic Ingredients
+                </a>
+                <a class="item" id="nutrientsTab">
+                    Nutrients
+                </a>
+            </div>
 
-                    <img class="rounded ui image" src="../images/eggstoastgrapefruit.jpg" width="auto"/>
-                    <h3 class="ui header">Hard-boiled Eggs with Toast and Grapefruit</h3>
-                    <div class="ui segment">
-                        <p>
-                            Toasted wheat bread served with sliced hard-boiled eggs, a good source of protein. Coupled with
-                            grapefruit slices.
-                        </p>
+            <div class="ui content sixteen wide column">
+                <!-- ==================================== VEGETARIAN SECTION ==================================== -->
+                <div class="ui vegetarian transition visible">
+                    <!-- ------------------------------------ SUMMARY ------------------------------------ -->
+                    <div  class="ui transition visible summary">
+                        <h2 class="ui header">Overview</h2>
+                        <div class="ui segment">
+                            <p>
+                                Vegetarianism refers to a diet devoid of meat, including red meat, poultry, seafood, or the flesh of any other animal. Some vegetarians may also
+                                choose to avoid all animal by-products, including some oils and gelatins, which are sometimes used in candies, yogurts, or fried foods. It is always important
+                                to check the label before purchasing any food item in order to ensure it does not contain any ingredient you are trying to avoid.
+                            </p>
+                            <p>
+                                Switching to vegetarianism may seem daunting, but there are a few simple steps to make the transition easier. If you're not sure you can go cold turkey
+                                on meat (no pun intended), you can start by eliminating red meat and gradually phase out other meats from there. Much of what you're eating on a day-to-day basis may be vegetarian already -- many pasta dishes and salads are meatless, and serveral common snack foods such as dried fruit, granola bars, cheese sticks, and chips meet the criteria as well. You can also search for vegetarian restuarants in your area, and suggest one next time you go out to eat with friends. Who knows, they may even be convinced to join you in your quest to revamp your diet!
+                            </p>
+
+                        </div>
+
+                        <h2 class="ui header">Motivations</h2>
+                        <div class="ui segment">
+                            <p>
+                                There are a variety of good reasons to switch to a vegetarian diet. Some of the most common ones include:
+                            </p>
+                            <ul class="ui list">
+                                <p><li><strong>Ethical</strong></li>
+                                    By being vegetarian, you are not contributing to the slaughter of animals for food. Billions of animals are killed each year to feed the world's population.
+                                </p>
+                                <p><li><strong>Practical</strong></li>
+                                    Vegetarianism is associated with many health benefits, including lower cholesterol, lower Body Mass Index (BMI), and lower risk of heart attack. On average, vegetarians consume less saturated fat and cholesterol than meat eaters.
+                                </p>
+                                <p><li><strong>Environmental</strong></li>
+                                    Raising animals for food is particularly taxing on the environment. The livestock industry contributes significantly to air and water pollution, land degradation, and climate change.
+                                </p>
+                            </ul>
+                        </div>
+
+                        <h2 class="ui header">Resources</h2>
+                        <div class="ui segment">
+                            <a href="https://www.vrg.org" title="Information on vegetarian recipes, restaurants, and nutrition" margin="10px">Vegetarian Resource Group</a><br>
+                            <a href="http://www.choosemyplate.gov/healthy-eating-tips/tips-for-vegetarian.html" title="Nutrition advice for vegetarians" margin="10px">USDA Healthy Eating Tips</a><br>
+                            <a href="http://www.vegweb.com/" title="Vegetarian recipes" margin="10px">VegWeb</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="column">
-                    <h1 class="ui header">Lunch</h1>
+                    <!-- ------------------------------------ MEALS ------------------------------------ -->
+                    <div class="ui transition hidden meals three column grid">
+                        <div class="column">
+                            <h1 class="ui header">Breakfast</h1>
 
-                    <img class="rounded ui image" src="../images/hummuswrap.jpg" width="auto"/>
-                    <h3 class="ui header">Hummus Wrap</h3>
-                    <div class="ui segment">
-                        <p>
-                            Lettuce, tomatoes, onions, and hummus in a pita wrap. Served with apple slices on the side.
-                        </p>
+                            <img class="rounded ui image" src="../images/eggstoastgrapefruit.jpg" width="auto"/>
+                            <h3 class="ui header">Hard-boiled Eggs with Toast and Grapefruit</h3>
+                            <div class="ui segment">
+                                <p>
+                                    Toasted wheat bread served with sliced hard-boiled eggs, a good source of protein. Coupled with
+                                    grapefruit slices.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <h1 class="ui header">Lunch</h1>
+
+                            <img class="rounded ui image" src="../images/hummuswrap.jpg" width="auto"/>
+                            <h3 class="ui header">Hummus Wrap</h3>
+                            <div class="ui segment">
+                                <p>
+                                    Lettuce, tomatoes, onions, and hummus in a pita wrap. Served with apple slices on the side.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <h1 class="ui header">Dinner</h1>
+
+                            <img class="rounded ui image" src="../images/tofustirfry.jpg" width="auto"/>
+                            <h3 class="ui header">Tofu Stir Fry</h3>
+                            <div class="ui segment">
+                                <p>
+                                    Tofu tossed with vegetables. Seasoned with spices and hoisin sauce.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="column">
-                    <h1 class="ui header">Dinner</h1>
+                    <!-- ------------------------------------ INGREDIENTS ------------------------------------ -->
+                    <div class="ui transition hidden ingredients">
+                        <h2 class="ui header">Pantry Essentials</h2>
+                        <div class="ui basic segment">
+                            <p>Here are some basics you should always have stocked:</p>
 
-                    <img class="rounded ui image" src="../images/tofustirfry.jpg" width="auto"/>
-                    <h3 class="ui header">Tofu Stir Fry</h3>
-                    <div class="ui segment">
-                        <p>
-                            Tofu tossed with vegetables. Seasoned with spices and hoisin sauce.
-                        </p>
+
+                            <table class="ui celled table segment">
+                                <thead>
+                                    <th>Food Group</th>
+                                    <th colspan="2">Ingredients</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <!-- ----------------------- GRAINS ----------------------- -->
+                                        <td rowspan="3" class>Grains</td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Brown Rice
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Cornmeal
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Quinoa
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Amaranth
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Bulgur Wheat
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Teff
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <!-- ----------------------- FRUITS ----------------------- -->
+                                    <tr>
+                                        <td rowspan="2">Fruits</td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Apples
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Pears
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Bananas
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Melons
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <!-- ----------------------- VEGETABLES ----------------------- -->
+                                    <tr>
+                                        <td rowspan="3" class="table-vegetables-cell">Vegetables</td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Potatoes
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Broccoli
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Carrots
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Peppers
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Squash
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="../browse/browse.html">
+                                                Kale
+                                                <i class="right arrow icon"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                    <!-- ------------------------------------ NUTRIENTS ------------------------------------ -->
+                    <div class="ui transition hidden nutrients">
+                        <h1 class="ui header">Daily Nutrition</h1>
+
+                        <div class="ui segment" id="vgtnNutrientsPara">
+                            <p>
+                                When eating a strictly vegetarian diet, it is important to be conscious of the nutrients you would normally get from meat and incorporate them into your diet through other foods. One of these is <u>protein</u>. To reach your daily quota of protein, you can replace meat-based entrees with beans, tofu, quinoa, seitan, eggs, or tempeh, to name a few. Additionally, to avoid a <u>vitamin B12</u> deficiency, you should try to consume some soy, eggs, and dairy on a regular basis, or take a vitamin B supplement. B vitamins are important in the body's absorption of <u>iron</u>, another nutrient that meat is rich in. Luckily, iron can also be found in dark, leafy greens, legumes, and dried fruits, such as prunes, so you can still get plenty of it while maintaining a vegetarian diet.
+
+                            </p>
+                        </div>
+
+                        <table class="ui celled table segment">
+                            <thead>
+                                <th>Nutrient</th>
+                                <th>Purpose</th>
+                                <th>Sources</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="5">
+                                        Protein
+                                    </td>
+                                    <td rowspan="5">
+                                        <ul class="ui list">
+                                            <li>
+                                                Builds bone, skin, and cartilage
+                                            </li>
+                                            <li>
+                                                Vitamins, enzymes, hormones
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Eggs
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Beans
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Tofu
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Tempeh
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Nuts & Seeds
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="5">
+                                        Iron
+                                    </td>
+                                    <td rowspan="5">
+                                        <ul class="ui list">
+                                            <li>
+                                                Carries oxygen in blood
+                                            </li>
+                                            <li>
+                                                Prevents anemia
+                                            </li>
+                                            <li>
+                                                Important for women
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Spinach
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Tofu
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Enriched Cereal
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Broccoli
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Potatoes
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <!-- ------------------------------------ INGREDIENTS ------------------------------------ -->
-            <div class="ui transition hidden ingredients">
-                <h2 class="ui header">Pantry Essentials</h2>
-                <div class="ui basic segment">
-                    <p>Here are some basics you should always have stocked:</p>
 
+            <!-- ==================================== VEGAN SECTION ==================================== -->
+            <div class="ui vegan transition hidden">
+                <!-- ------------------------------------ SUMMARY ------------------------------------ -->
+                <div class="ui transition visible summary">
+                    <h2 class="ui header">Overview</h2>
+                    <div class="ui segment">
+                        <p>
+                            Veganism refers to a diet devoid of meat, animal products, eggs, and dairy. Some animal-based ingredients such as beeswax, honey, or gelatin might be used in foods where you wouldn't necessarily expect them. Consequently, it is always important to check the label before purchasing any food item in order to ensure it does not contain any ingredient you are trying to avoid.
+                        </p>
+                        <p>
+                            Switching to veganism may seem daunting, but there are a few simple steps to make the transition easier. If you're not sure you can go cold turkey
+                            on meat (no pun intended), you can start by eliminating red meat and gradually phase out other meats and dairy from there. Alternatively, it may be easier for you to start by eliminating eggs from your diet, then milk, then beef, an so on. Much of what you're eating on a day-to-day basis may be vegan already -- many pasta dishes and salads are meatless and dairy-less, and serveral common snack foods such as dried fruit, granola bars, almonds, and chips meet the criteria as well. You can also search for vegan restuarants in your area, and suggest one next time you go out to eat with friends. Who knows, they may even be convinced to join you in your quest to revamp your diet!
+                        </p>
+
+                    </div>
+
+                    <h2 class="ui header">Motivations</h2>
+                    <div class="ui segment">
+                        <p>
+                            There are a variety of good reasons to switch to a vegan diet. Some of the most common ones include:
+                        </p>
+                        <ul class="ui list">
+                            <p><li><strong>Ethical</strong></li>
+                                By being vegan, you are not contributing to the slaughter of animals for food. Billions of animals are killed each year to feed the world's population.
+                            </p>
+                            <p>
+                                <li><strong>Practical</strong></li>
+                                Veganism is associated with many health benefits, including lower cholesterol, lower Body Mass Index (BMI), and lower risk
+                                of heart attack. On average, vegans consume less saturated fat and cholesterol than meat eaters.
+                            </p>
+                            <p>
+                                <li><strong>Environmental</strong></li>
+                                Raising animals for food is particularly taxing on the environment. The livestock industry contributes significantly to air and water pollution, land degradation, and climate change.
+                            </p>
+                        </ul>
+                    </div>
+
+                    <h2 class="ui header">Resources</h2>
+                    <div class="ui segment">
+                        <a href="http://features.peta.org/how-to-go-vegan/" title="What to buy, what to make, and where to eat as a vegan">How to Go Vegan</a><br>
+                        <a href="http://vegan.org/eat/" title="Meal ideas and staple items in a vegan diet">Eating Vegan</a><br>
+                        <a href="http://www.vrg.org/nutshell/vegan.htm" title="General information on veganism, vegan nutrition, and vegan foods">Vegetarian Resource Group: Veganism in a Nutshell</a>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------ MEALS ------------------------------------ -->
+                <div class="ui transition hidden meals three column grid">
+                    <div class="column">
+                        <h1 class="ui header">Breakfast</h1>
+                        <h3 class="ui header">Peanut Butter Bagel</h3>
+                        <img class="rounded ui image" src="../images/peanutbutterbagel.jpg" width="auto"/>
+                        <div class="ui segment">
+                            <p>
+                                A toasted bagel topped with peanut butter and sliced bananas.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h1 class="ui header">Lunch</h1>
+                        <h3 class="ui header">Lentil Soup</h3>
+                        <img class="rounded ui image" src="../images/lentilsoup.jpg" width="auto"/>
+                        <div class="ui segment">
+                            <p>
+                                Lentil soup with vegetables. Possible side dishes include mixed fruit or rosemary potato wedges.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h1 class="ui header">Dinner</h1>
+                        <h3 class="ui header">Quinoa Pilaf</h3>
+                        <img class="rounded ui image" src="../images/quinoapilaf.jpg" width="auto"/>
+                        <div class="ui segment">
+                            <p>
+                                Quinoa mixed with diced vegetables, seasoned to taste.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------ INGREDIENTS ------------------------------------ -->
+                <div class="ui transition hidden ingredients">
+                    <h2 class="ui header">Pantry Essentials</h2>
+                    <div class="ui basic segment">
+                        <p>Here are some basics you should always have stocked:</p>
+
+
+                        <table class="ui celled table segment">
+                            <thead>
+                                <th>Food Group</th>
+                                <th colspan="2">Ingredients</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!-- ----------------------- GRAINS ----------------------- -->
+                                    <td rowspan="3" class>Grains</td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Brown Rice
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Cornmeal
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Quinoa
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Amaranth
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Bulgur Wheat
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Teff
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- ----------------------- FRUITS ----------------------- -->
+                                <tr>
+                                    <td rowspan="2">Fruits</td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Apples
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Pears
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Bananas
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Melons
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- ----------------------- Vegetables ----------------------- -->
+                                <tr>
+                                    <td rowspan="3" class="table-vegetables-cell">Vegetables</td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Potatoes
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Broccoli
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Carrots
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Peppers
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Squash
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="../browse/browse.html">
+                                            Kale
+                                            <i class="right arrow icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- ------------------------------------ NUTRIENTS ------------------------------------ -->
+                <div class="ui transition hidden nutrients">
+                    <h2 class="ui header">Daily Nutrition</h2>
+                    <div class="ui segment">
+                        <p>
+                            When eating a strictly vegan diet, it is important to be conscious of the nutrients you would normally get from meat and dairy and incorporate them into your diet through other foods. One of these is <u>protein</u>. To reach your daily quota of protein, you can replace meat-based entrees with beans, tofu, quinoa, seitan, or tempeh, to name a few. Additionally, to avoid a <u>vitamin B12</u> deficiency, you should try to consume soy products on a regular basis, or take a vitamin B supplement. B vitamins are important in the body's absorption of <u>iron</u>, another nutrient that meat is rich in. Luckily, iron can also be found in dark, leafy greens, legumes, and dried fruits, such as prunes, so you can still get plenty of it while maintaining a vegan diet. Without dairy, you should also make an effort to sustain a healthy level of <u>calcium</u>. Some alternate sources of calcium include fortified soymilk, fortified cereals, and greens such as spinach, kale, turnips, and collard greens.
+                        </p>
+                    </div>
 
                     <table class="ui celled table segment">
                         <thead>
-                            <th>Food Group</th>
-                            <th colspan="2">Ingredients</th>
+                            <th>Nutrient</th>
+                            <th>Purpose</th>
+                            <th>Sources</th>
                         </thead>
                         <tbody>
                             <tr>
-                                <!-- ----------------------- GRAINS ----------------------- -->
-                                <td rowspan="3" class>Grains</td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Brown Rice
-                                        <i class="right arrow icon"></i>
-                                    </a>
+                                <td rowspan="5">
+                                    Protein
+                                </td>
+                                <td rowspan="5">
+                                    <ul class="ui list">
+                                        <li>
+                                            Builds bone, skin, and cartilage
+                                        </li>
+                                        <li>
+                                            Vitamins, enzymes, hormones
+                                        </li>
+                                    </ul>
                                 </td>
                                 <td>
                                     <a href="../browse/browse.html">
-                                        Cornmeal
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Quinoa
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Amaranth
+                                        Eggs
                                         <i class="right arrow icon"></i>
                                     </a>
                                 </td>
@@ -340,29 +818,7 @@
                             <tr>
                                 <td>
                                     <a href="../browse/browse.html">
-                                        Bulgur Wheat
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Teff
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <!-- ----------------------- FRUITS ----------------------- -->
-                            <tr>
-                                <td rowspan="2">Fruits</td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Apples
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Pears
+                                        Beans
                                         <i class="right arrow icon"></i>
                                     </a>
                                 </td>
@@ -370,26 +826,68 @@
                             <tr>
                                 <td>
                                     <a href="../browse/browse.html">
-                                        Bananas
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Melons
+                                        Tofu
                                         <i class="right arrow icon"></i>
                                     </a>
                                 </td>
                             </tr>
-                            <!-- ----------------------- VEGETABLES ----------------------- -->
                             <tr>
-                                <td rowspan="3" class="table-vegetables-cell">Vegetables</td>
                                 <td>
                                     <a href="../browse/browse.html">
-                                        Potatoes
+                                        Tempeh
                                         <i class="right arrow icon"></i>
                                     </a>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="../browse/browse.html">
+                                        Nuts & Seeds
+                                        <i class="right arrow icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="5">
+                                    Iron
+                                </td>
+                                <td rowspan="5">
+                                    <ul class="ui list">
+                                        <li>
+                                            Carries oxygen in blood
+                                        </li>
+                                        <li>
+                                            Prevents anemia
+                                        </li>
+                                        <li>
+                                            Important for women
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a href="../browse/browse.html">
+                                        Spinach
+                                        <i class="right arrow icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="../browse/browse.html">
+                                        Tofu
+                                        <i class="right arrow icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="../browse/browse.html">
+                                        Enriched Cereal
+                                        <i class="right arrow icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <a href="../browse/browse.html">
                                         Broccoli
@@ -400,521 +898,21 @@
                             <tr>
                                 <td>
                                     <a href="../browse/browse.html">
-                                        Carrots
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Peppers
+                                        Potatoes
                                         <i class="right arrow icon"></i>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Squash
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="../browse/browse.html">
-                                        Kale
-                                        <i class="right arrow icon"></i>
-                                    </a>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
 
                 </div>
-            </div>
-
-
-            <!-- ------------------------------------ NUTRIENTS ------------------------------------ -->
-            <div class="ui transition hidden nutrients">
-                <h1 class="ui header">Daily Nutrition</h1>
-
-                <div class="ui segment" id="vgtnNutrientsPara">
-                    <p>
-                        When eating a strictly vegetarian diet, it is important to be conscious of the nutrients you would normally get from meat and incorporate them into your diet through other foods. One of these is <u>protein</u>. To reach your daily quota of protein, you can replace meat-based entrees with beans, tofu, quinoa, seitan, eggs, or tempeh, to name a few. Additionally, to avoid a <u>vitamin B12</u> deficiency, you should try to consume some soy, eggs, and dairy on a regular basis, or take a vitamin B supplement. B vitamins are important in the body's absorption of <u>iron</u>, another nutrient that meat is rich in. Luckily, iron can also be found in dark, leafy greens, legumes, and dried fruits, such as prunes, so you can still get plenty of it while maintaining a vegetarian diet.
-
-                    </p>
-                </div>
-
-                <table class="ui celled table segment">
-                    <thead>
-                        <th>Nutrient</th>
-                        <th>Purpose</th>
-                        <th>Sources</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="5">
-                                Protein
-                            </td>
-                            <td rowspan="5">
-                                <ul class="ui list">
-                                    <li>
-                                        Builds bone, skin, and cartilage
-                                    </li>
-                                    <li>
-                                        Vitamins, enzymes, hormones
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Eggs
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Beans
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Tofu
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Tempeh
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Nuts & Seeds
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td rowspan="5">
-                                Iron
-                            </td>
-                            <td rowspan="5">
-                                <ul class="ui list">
-                                    <li>
-                                        Carries oxygen in blood
-                                    </li>
-                                    <li>
-                                        Prevents anemia
-                                    </li>
-                                    <li>
-                                        Important for women
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Spinach
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Tofu
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Enriched Cereal
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Broccoli
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Potatoes
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================================== VEGAN SECTION ==================================== -->
-    <div class="ui vegan transition hidden">
-        <!-- ------------------------------------ SUMMARY ------------------------------------ -->
-        <div class="ui transition visible summary">
-            <h2 class="ui header">Overview</h2>
-            <div class="ui segment">
-                <p>
-                    Veganism refers to a diet devoid of meat, animal products, eggs, and dairy. Some animal-based ingredients such as beeswax, honey, or gelatin might be used in foods where you wouldn't necessarily expect them. Consequently, it is always important to check the label before purchasing any food item in order to ensure it does not contain any ingredient you are trying to avoid.
-                </p>
-                <p>
-                    Switching to veganism may seem daunting, but there are a few simple steps to make the transition easier. If you're not sure you can go cold turkey
-                    on meat (no pun intended), you can start by eliminating red meat and gradually phase out other meats and dairy from there. Alternatively, it may be easier for you to start by eliminating eggs from your diet, then milk, then beef, an so on. Much of what you're eating on a day-to-day basis may be vegan already -- many pasta dishes and salads are meatless and dairy-less, and serveral common snack foods such as dried fruit, granola bars, almonds, and chips meet the criteria as well. You can also search for vegan restuarants in your area, and suggest one next time you go out to eat with friends. Who knows, they may even be convinced to join you in your quest to revamp your diet!
-                </p>
 
             </div>
-
-            <h2 class="ui header">Motivations</h2>
-            <div class="ui segment">
-                <p>
-                    There are a variety of good reasons to switch to a vegan diet. Some of the most common ones include:
-                </p>
-                <ul class="ui list">
-                    <p><li><strong>Ethical</strong></li>
-                        By being vegan, you are not contributing to the slaughter of animals for food. Billions of animals are killed each year to feed the world's population.
-                    </p>
-                    <p>
-                        <li><strong>Practical</strong></li>
-                        Veganism is associated with many health benefits, including lower cholesterol, lower Body Mass Index (BMI), and lower risk
-                        of heart attack. On average, vegans consume less saturated fat and cholesterol than meat eaters.
-                    </p>
-                    <p>
-                        <li><strong>Environmental</strong></li>
-                        Raising animals for food is particularly taxing on the environment. The livestock industry contributes significantly to air and water pollution, land degradation, and climate change.
-                    </p>
-                </ul>
-            </div>
-
-            <h2 class="ui header">Resources</h2>
-            <div class="ui segment">
-                <a href="http://features.peta.org/how-to-go-vegan/" title="What to buy, what to make, and where to eat as a vegan">How to Go Vegan</a><br>
-                <a href="http://vegan.org/eat/" title="Meal ideas and staple items in a vegan diet">Eating Vegan</a><br>
-                <a href="http://www.vrg.org/nutshell/vegan.htm" title="General information on veganism, vegan nutrition, and vegan foods">Vegetarian Resource Group: Veganism in a Nutshell</a>
-            </div>
-        </div>
-
-        <!-- ------------------------------------ MEALS ------------------------------------ -->
-        <div class="ui transition hidden meals three column grid">
-            <div class="column">
-                <h1 class="ui header">Breakfast</h1>
-                <h3 class="ui header">Peanut Butter Bagel</h3>
-                <img class="rounded ui image" src="../images/peanutbutterbagel.jpg" width="auto"/>
-                <div class="ui segment">
-                    <p>
-                        A toasted bagel topped with peanut butter and sliced bananas.
-                    </p>
-                </div>
-            </div>
-            <div class="column">
-                <h1 class="ui header">Lunch</h1>
-                <h3 class="ui header">Lentil Soup</h3>
-                <img class="rounded ui image" src="../images/lentilsoup.jpg" width="auto"/>
-                <div class="ui segment">
-                    <p>
-                        Lentil soup with vegetables. Possible side dishes include mixed fruit or rosemary potato wedges.
-                    </p>
-                </div>
-            </div>
-            <div class="column">
-                <h1 class="ui header">Dinner</h1>
-                <h3 class="ui header">Quinoa Pilaf</h3>
-                <img class="rounded ui image" src="../images/quinoapilaf.jpg" width="auto"/>
-                <div class="ui segment">
-                    <p>
-                        Quinoa mixed with diced vegetables, seasoned to taste.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ------------------------------------ INGREDIENTS ------------------------------------ -->
-        <div class="ui transition hidden ingredients">
-            <h2 class="ui header">Pantry Essentials</h2>
-            <div class="ui basic segment">
-                <p>Here are some basics you should always have stocked:</p>
-
-
-                <table class="ui celled table segment">
-                    <thead>
-                        <th>Food Group</th>
-                        <th colspan="2">Ingredients</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <!-- ----------------------- GRAINS ----------------------- -->
-                            <td rowspan="3" class>Grains</td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Brown Rice
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Cornmeal
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Quinoa
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Amaranth
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Bulgur Wheat
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Teff
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <!-- ----------------------- FRUITS ----------------------- -->
-                        <tr>
-                            <td rowspan="2">Fruits</td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Apples
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Pears
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Bananas
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Melons
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <!-- ----------------------- Vegetables ----------------------- -->
-                        <tr>
-                            <td rowspan="3" class="table-vegetables-cell">Vegetables</td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Potatoes
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Broccoli
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Carrots
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Peppers
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Squash
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../browse/browse.html">
-                                    Kale
-                                    <i class="right arrow icon"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- ------------------------------------ NUTRIENTS ------------------------------------ -->
-        <div class="ui transition hidden nutrients">
-            <h2 class="ui header">Daily Nutrition</h2>
-            <div class="ui segment">
-                <p>
-                    When eating a strictly vegan diet, it is important to be conscious of the nutrients you would normally get from meat and dairy and incorporate them into your diet through other foods. One of these is <u>protein</u>. To reach your daily quota of protein, you can replace meat-based entrees with beans, tofu, quinoa, seitan, or tempeh, to name a few. Additionally, to avoid a <u>vitamin B12</u> deficiency, you should try to consume soy products on a regular basis, or take a vitamin B supplement. B vitamins are important in the body's absorption of <u>iron</u>, another nutrient that meat is rich in. Luckily, iron can also be found in dark, leafy greens, legumes, and dried fruits, such as prunes, so you can still get plenty of it while maintaining a vegan diet. Without dairy, you should also make an effort to sustain a healthy level of <u>calcium</u>. Some alternate sources of calcium include fortified soymilk, fortified cereals, and greens such as spinach, kale, turnips, and collard greens.
-                </p>
-            </div>
-
-            <table class="ui celled table segment">
-                <thead>
-                    <th>Nutrient</th>
-                    <th>Purpose</th>
-                    <th>Sources</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="5">
-                            Protein
-                        </td>
-                        <td rowspan="5">
-                            <ul class="ui list">
-                                <li>
-                                    Builds bone, skin, and cartilage
-                                </li>
-                                <li>
-                                    Vitamins, enzymes, hormones
-                                </li>
-                            </ul>
-                        </td>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Eggs
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Beans
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Tofu
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Tempeh
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Nuts & Seeds
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="5">
-                            Iron
-                        </td>
-                        <td rowspan="5">
-                            <ul class="ui list">
-                                <li>
-                                    Carries oxygen in blood
-                                </li>
-                                <li>
-                                    Prevents anemia
-                                </li>
-                                <li>
-                                    Important for women
-                                </li>
-                            </ul>
-                        </td>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Spinach
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Tofu
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Enriched Cereal
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Broccoli
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../browse/browse.html">
-                                Potatoes
-                                <i class="right arrow icon"></i>
-                            </a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
         </div>
 
     </div>
-</div>
-
-</div>
 </div>
 </div>
 </section>
