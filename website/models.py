@@ -32,7 +32,7 @@ class Dish(models.Model):
     class Meta:
         ordering = ('name',)
 
-class Details(model.Model):
+class Details(models.Model):
     # percent DV
     protein = models.PositiveSmallIntegerField(default=0)
     iron = models.PositiveSmallIntegerField(default=0)
