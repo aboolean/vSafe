@@ -20,7 +20,7 @@ class Ingredient(models.Model):
     isVegan = models.BooleanField(blank=False)
 
     dishes = models.ManyToManyField('Dish', related_name='ingredients', null=True, blank=True)
-    substitutes = models.ManyToManyField('self', symmetrical=False, related_name=substitutee, null=True, blank=True)
+    substitutes = models.ManyToManyField('self', symmetrical=False, related_name='substitutee', null=True, blank=True)
 
     def __unicode__(self):
         return self.name
