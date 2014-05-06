@@ -70,7 +70,7 @@
             {% endif %}
 
             {% if dish.substitutes.all %}
-            $(".substitutes").each(function() {
+                $(".substitutes").each(function() {
                     this.remove();
                 });
             {% else %}
@@ -79,13 +79,13 @@
                 {% endfor %}
             {% endif %}
 
-            {% if dish.substitutes.all %}
+            {% if dish.similar.all %}
                 $(".related").each(function() {
                     this.remove();
                 });
             {% else %}
                 {% for sim in dish.similar.all %}
-                    createTile('I' + '{{sim.id}}', '{{sim.name}}', '{{sim.image}}', {{sim.isVegetarian|lower}}, {{sim.isVegan|lower}}, [], $('.tiles.related'));
+                    createTile('D' + '{{sim.id}}', '{{sim.name}}', '{{sim.image}}', {{sim.isVegetarian|lower}}, {{sim.isVegan|lower}}, [], $('.tiles.related'));
                 {% endfor %}
             {% endif %}
 
