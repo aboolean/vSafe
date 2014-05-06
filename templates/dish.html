@@ -70,23 +70,23 @@
             {% endif %}
 
             {% if dish.substitutes.all %}
-                $(".substitutes").each(function() {
-                    this.remove();
-                });
-            {% else %}
                 {% for sub in dish.substitutes.all %}
                     createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
                 {% endfor %}
+            {% else %}
+                $(".substitutes").each(function() {
+                    this.remove();
+                });
             {% endif %}
 
             {% if dish.similar.all %}
-                $(".related").each(function() {
-                    this.remove();
-                });
-            {% else %}
                 {% for sim in dish.similar.all %}
                     createTile('D' + '{{sim.id}}', '{{sim.name}}', '{{sim.image}}', {{sim.isVegetarian|lower}}, {{sim.isVegan|lower}}, [], $('.tiles.related'));
                 {% endfor %}
+            {% else %}
+                $(".related").each(function() {
+                    this.remove();
+                });
             {% endif %}
 
             $('.ui.dimmable')
