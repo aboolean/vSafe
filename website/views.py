@@ -22,22 +22,24 @@ def browse (request):
 def ingredient (request, id_num):
 	t = get_template('ingredient.html')
 	ingredient_object = Ingredient.objects.get(id=id_num)
-	c = Context({'ingred':ingredient_object})
+
+	sub = [sub.dishes.all() for sub in ingredient_object.substitutee.all()]
+	dishes = list(itertools.chain.from_iterable(sub))
+	dishes = dishes + list(ingredient_object.dishes.all())
+	dishes = sorted(list(set(dishes))) # remove duplices
+
+	c = Context({'ingred':ingredient_object,'dishes':dishes})
 	html = t.render(c)
 	return HttpResponse(html)
 
 def dish (request, id_num):
 	t = get_template('dish.html')
 	dish_object = Dish.objects.get(id=id_num)
+
 	ingredients = dish_object.ingredients.all()
-	substitutes = [ingred.substitutes.all() for ingred in ingredients]
-	substitutes = sorted(list(itertools.chain.from_iterable(substitutes)))
-	
-	if substitutes == None or len(substitutes) == 0:
-		substitutes = []
-	else:
-		# substitutes = list(substitutes for substitutes,_ in itertools.groupby(substitutes))
-		substitutes = list(set(substitutes))
+	substitutes = [list(ingred.substitutes.all()) for ingred in ingredients]
+	substitutes = list(itertools.chain.from_iterable(substitutes))
+	substitutes = sorted(list(set(substitutes)))
 
 	c = Context({'dish':dish_object, 'subs':substitutes, 'ingredients':ingredients})
 	html = t.render(c)
