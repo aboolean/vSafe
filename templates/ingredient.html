@@ -26,12 +26,12 @@
             {% if ingred.dishes.all %}
                 {% for dish in ingred.dishes.all %}
                     {
-                        "title":    {{dish.name}},
-                        "image":    {{dish.image}},
+                        "title":    '{{dish.name}}',
+                        "image":    '{{dish.image}}',
                         "link":     '/vsafe/browse/dish/{{dish.id}}',
                         "tags":     ['dish',],
-                        "vt":       {{dish.isVegetarian}},
-                        "vg":       {{dish.isVegan}}
+                        "vt":       {{dish.isVegetarian|lower}},
+                        "vg":       {{dish.isVegan|lower}}
                     },
                 {% endfor %}
             {% endif %}
