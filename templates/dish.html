@@ -63,19 +63,18 @@
                 {% for ingred in dish.ingredients.all %}
                     createTile('I' + '{{ingred.id}}', '{{ingred.name}}', '{{ingred.image}}', {{ingred.isVegetarian|lower}}, {{ingred.isVegan|lower}}, [], $('.tiles.ingredients'));
                 {% endfor %}
-
-                {% if subs %}
-                    {% for sub in subs %}
-                        createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
-                    {% endfor %}
-                {% else %}
-                    $(".substitutes").each(function() {
-                        this.remove();
-                    });
-                {% endif %}
-
             {% else %}
                 $(".ingredients").each(function() {
+                    this.remove();
+                });
+            {% endif %}
+
+            {% if {{subs}} %}
+                {% for sub in {{subs}} %}
+                    createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
+                {% endfor %}
+            {% else %}
+                $(".substitutes").each(function() {
                     this.remove();
                 });
             {% endif %}
