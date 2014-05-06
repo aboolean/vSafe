@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^browse/?$', views.browse),
     url(r'^browse/ingredient/(?P<id_num>[0-9]+)/?$', views.ingredient),
     url(r'^browse/dish/(?P<id_num>[0-9]+)/?$', views.dish),
+    url(r'^browse/subset/', views.subset),
 )
