@@ -61,10 +61,12 @@
             $("#nav-search-icon").click(function() {
                 var search = navInput.val().toLowerCase().replace(/\s+/g,"");
                 var suggestion = $(".ui-autocomplete:first li:first-child a").text().toLowerCase().replace(/\s+/g,"");
-                
+
                 if (search == suggestion) {
                     navInput.focus();
                     var keyEvent = $.Event("keydown");  
+                    keyEvent.keyCode = $.ui.keyCode.DOWN;
+                    navInput.trigger(keyEvent);
                     keyEvent.keyCode = $.ui.keyCode.DOWN;
                     navInput.trigger(keyEvent);
                     keyEvent.keyCode = $.ui.keyCode.ENTER;
