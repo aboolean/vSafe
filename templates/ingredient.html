@@ -22,21 +22,6 @@
                          "fats":        {{ingred.fats}}
                         };
         
-        var dishes = [
-            {% if ingred.dishes.all %}
-                {% for dish in ingred.dishes.all %}
-                    {
-                        "title":    '{{dish.name}}',
-                        "image":    '{{dish.image}}',
-                        "link":     '/vsafe/browse/dish/{{dish.id}}',
-                        "tags":     ['dish',],
-                        "vt":       {{dish.isVegetarian|lower}},
-                        "vg":       {{dish.isVegan|lower}}
-                    },
-                {% endfor %}
-            {% endif %}
-        ];
-        
         $(document).ready(function(){
             
             var percents = $.map(nutrients, function(val, key) {return val;});
@@ -69,12 +54,16 @@
             }
 
             // populate specifics
-            $('#item_name').html({{ingred.name}});
-            var item_img_url = 'url(' + {{ingred.image}} + ')'
+            $('#item_name').html('{{ingred.name}}');
+            var item_img_url = 'url(' + '{{ingred.image}}' + ')'
             $('#item_img').css('background-image', item_img_url);
 
             // populate dishes section
-            createTiles(dishes, $('.tiles.dishes'));
+            {% if ingred.dishes.all %}
+                {% for dish in ingred.dishes.all %}
+                    createTile('D' + '{{dish.id}}', '{{dish.name}}', '{{dish.image}}', {{dish.isVegetarian|lower}}, {{dish.isVegan|lower}}, $('.tiles.dishes'));
+                {% endfor %}
+            {% endif %}
 
             $('.ui.dimmable')
             .dimmer({
