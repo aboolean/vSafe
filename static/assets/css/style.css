@@ -5,8 +5,36 @@ body {
     height: 100%;
     margin: 0;
     min-height: 500px !important;
-    min-width: 661px !important;
+    min-width: 669px !important;
     padding: 0;
+}
+
+.ui-autocomplete {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.3125em;
+    background: #FFFFFF;
+    cursor: default;
+    overflow: auto;
+    width: 240px;
+}
+
+ul.ui-autocomplete{
+    list-style: none;
+    font-size: 1em;
+    text-align: left !important;
+}
+
+ul.ui-autocomplete li.ui-menu-item{text-align:left;}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+.ui-state-focus {
+    color:White;
+    background:#88b653;
+    outline:none;
+    display: block;
 }
 
 header {
@@ -42,8 +70,7 @@ nav .item {
     border-radius: 0.5em;
     border: 1px solid #88b653;
     font-size: 2em;
-    margin-top: 5em;
-    margin: 0 auto;
+    margin: 3em auto;
     text-align: center;
 }
 
@@ -179,6 +206,11 @@ input {
     display: block;
 }
 
+.nutrition-table > tbody > tr > td:last-child{
+    min-width: 164px !important;
+}
+
+
 /************************
 **
 ** Responsive Styling
@@ -192,12 +224,17 @@ input {
     .result {
         width: 45%;
     }
+
+    .filter-icon {
+        display: none !important;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 805px) {
     .menu.right {
         width: 40%;
     }
+
 }
 
 @media only screen and (min-width: 656px) and (max-width: 767px) {

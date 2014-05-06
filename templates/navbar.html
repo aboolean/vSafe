@@ -1,5 +1,23 @@
 <header class="ui">
     <h1 id="title"><a href="/vsafe/">vSafe</a></h1>
+    <script>
+        $(function({
+            $("#nav-input").autocomplete({
+                source: [{value:"Apple", data:"lookup value"},
+                         {value:"Quinoa", data:"lookup value"},
+                         {value:"Sriracha", data:"lookup value"},
+                         {value:"Tofu", data:"lookup value"},
+                         {value:"Vegetable Medly", data:"lookup value"},
+                         {value:"Barley", data:"lookup value"},
+                         {value:"Basil", data:"lookup value"},
+                        ],
+                select: function(event, suggestion){
+                         console.log(suggestion.item);
+                         console.log(suggestion.item.value + "     " + suggestion.item.data);
+                        }
+            });
+        });
+        </script>
     <nav class="ui green menu">
         <a href="/vsafe/" class="item" id="home_nav">HOME</a>
         <a href="/vsafe/learn/" class="item" id="learn_nav">LEARN</a>
