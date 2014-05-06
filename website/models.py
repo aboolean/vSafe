@@ -1,8 +1,12 @@
 from django.db import models
+from tagging.fields import TagField
+from tagging.models import Tag
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=40)
     image = models.CharField(max_length=40)
+
+    tags = TagField()
 
     # percent DV
     protein = models.PositiveSmallIntegerField(default=0)
@@ -28,6 +32,8 @@ class Dish(models.Model):
     name = models.CharField(max_length=40)
     image = models.CharField(max_length=40)
 
+    tags = TagField()
+
     # percent DV
     protein = models.PositiveSmallIntegerField(default=0)
     iron = models.PositiveSmallIntegerField(default=0)
@@ -49,23 +55,3 @@ class Dish(models.Model):
 
     class Meta:
         ordering = ('name',)
-
-# class Details(models.Model):
-#     # percent DV
-#     protein = models.PositiveSmallIntegerField(default=0)
-#     iron = models.PositiveSmallIntegerField(default=0)
-#     calcium = models.PositiveSmallIntegerField(default=0)
-#     fiber = models.PositiveSmallIntegerField(default=0)
-#     carbs = models.PositiveSmallIntegerField(default=0)
-#     fats = models.PositiveSmallIntegerField(default=0)
-
-#     isVegetarian = models.BooleanField(blank=False)
-#     isVegan = models.BooleanField(blank=False)
-
-#     def __unicode__(self):
-#         return str(self.protein) + ", " \
-#              + str(self.iron) + ", " \
-#              + str(self.calcium) + ", " \
-#              + str(self.fiber) + ", " \
-#              + str(self.carbs) + ", " \
-#              + str(self.fats)
