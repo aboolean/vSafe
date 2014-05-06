@@ -74,6 +74,30 @@
                     $('.result').show();
                 }
             });
+
+            $('.ui.dimmable')
+            .dimmer({
+                on: 'hover',
+                duration: {
+                    show : 200,
+                    hide : 200
+                }
+            });
+
+            function updateSize() {
+                if ($(window).width() < 751) {
+                    $('#browse-filters').removeClass('vertical');
+                } else {
+                    $('#browse-filters').addClass('vertical');
+                }
+            }
+
+            updateSize();
+            $(window).resize(function() {
+                updateSize();
+            });
+            
+
             $("#browse_nav").addClass("active");
         });
     </script>
