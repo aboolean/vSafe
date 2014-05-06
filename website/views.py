@@ -31,8 +31,8 @@ def dish (request, id_num):
 	dish_object = Dish.objects.get(id=id_num)
 	ingredients = dish_object.ingredients.all()
 	substitutes = [ingred.substitutes.all() for ingred in ingredients]
-	substitutes = list(itertools.chain.from_iterable(substitutes)).sort()
-
+	substitutes = sorted(list(itertools.chain.from_iterable(substitutes)))
+	
 	if substitutes == None or len(substitutes) == 0:
 		substitutes = []
 	else:
