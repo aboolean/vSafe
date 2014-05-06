@@ -59,8 +59,8 @@
             $('#item_img').css('background-image', item_img_url);
 
             // populate sections or remove
-            {% if dish.ingredients.all %}
-                {% for ingred in dish.ingredients.all %}
+            {% if ingredients %}
+                {% for ingred in ingredients %}
                     createTile('I' + '{{ingred.id}}', '{{ingred.name}}', '{{ingred.image}}', {{ingred.isVegetarian|lower}}, {{ingred.isVegan|lower}}, [], $('.tiles.ingredients'));
                 {% endfor %}
             {% else %}
@@ -69,8 +69,8 @@
                 });
             {% endif %}
 
-            {% if subs.all %}
-                {% for sub in subs.all %}
+            {% if subs %}
+                {% for sub in subs %}
                     createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
                 {% endfor %}
             {% else %}
