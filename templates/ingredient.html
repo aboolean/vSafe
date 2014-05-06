@@ -23,16 +23,18 @@
                         };
         
         var dishes = [
-            {% for dish in ingred.dishes %}
-                {
-                    "title":    {{dish.name}},
-                    "image":    {{dish.image}},
-                    "link":     '/vsafe/browse/dish/{{dish.id}}',
-                    "tags":     ['dish',],
-                    "vt":       {{dish.isVegetarian}},
-                    "vg":       {{dish.isVegan}}
-                }.
-            {% endfor %}
+            {% if ingred.dishes.all() %}
+                {% for dish in ingred.dishes.all() %}
+                    {
+                        "title":    {{dish.name}},
+                        "image":    {{dish.image}},
+                        "link":     '/vsafe/browse/dish/{{dish.id}}',
+                        "tags":     ['dish',],
+                        "vt":       {{dish.isVegetarian}},
+                        "vg":       {{dish.isVegan}}
+                    },
+                {% endfor %}
+            {% endif %}
         ];
         
         $(document).ready(function(){
