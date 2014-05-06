@@ -70,13 +70,13 @@
             {% endif %}
 
             {% if dish.substitutes.all %}
+            $(".substitutes").each(function() {
+                    this.remove();
+                });
+            {% else %}
                 {% for sub in dish.substitutes.all %}
                     createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
                 {% endfor %}
-            {% else %}
-                $(".substitutes").each(function() {
-                    this.remove();
-                });
             {% endif %}
 
             {% if dish.substitutes.all %}
