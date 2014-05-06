@@ -31,12 +31,11 @@ def dish (request, id_num):
 	dish_object = Dish.objects.get(id=id_num)
 	substitutes = [ingred.substitutes.all() for ingred in dish_object.ingredients.all()]
 	substitutes = list(itertools.chain.from_iterable(substitutes)).sort()
-	
-	if (if substitutes == None || len(substitutes) == 0) {
+
+	if substitutes == None or len(substitutes) == 0:
 		substitutes = []
-	} else {
+	else:
 		substitutes = list(substitutes for substitutes,_ in itertools.groupby(substitutes))
-	}
 
 	c = Context({'dish':dish_object, 'subs':substitutes})
 	html = t.render(c)
