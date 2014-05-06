@@ -16,10 +16,10 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/?$', include(admin.site.urls)),
     url(r'^$', views.index),
-    url(r'^learn/', views.learn),
-    url(r'^browse/$', views.browse),
-    url(r'^browse/ingredient/(?P<id_num>[0-9]*)$', views.ingredient),
-    url(r'^browse/dish/(?P<id_num>[0-9]*)$', views.dish),
+    url(r'^learn/?$', views.learn),
+    url(r'^browse/?$', views.browse),
+    url(r'^browse/ingredient/(?P<id_num>[0-9]+)/?$', views.ingredient),
+    url(r'^browse/dish/(?P<id_num>[0-9]+)/?$', views.dish),
 )

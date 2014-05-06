@@ -14,21 +14,28 @@
             
             Title, image, tags, vt/vg will be populated automatically.
         */
-        var item_name = "{{ingred.name}}"
-        var nutrients = {"protein":     0,
-                         "iron":        10,
-                         "calcium":     0,
-                         "fiber":       5,
-                         "carbs":       2,
-                         "fats":        0
+        var nutrients = {"protein":     {{ingred.protein}},
+                         "iron":        {{ingred.iron}},
+                         "calcium":     {{ingred.calcium}},
+                         "fiber":       {{ingred.fiber}},
+                         "carbs":       {{ingred.carbs}},
+                         "fats":        {{ingred.fats}}
                         };
         
         var dishes = [
-            map_tiles['Apple Wedges and Peanut Butter'],
+            {% for dish in ingred.dishes %}
+                {
+                    "title":    {{dish.name}},
+                    "image":    {{dish.image}},
+                    "link":     '/vsafe/browse/dish/{{dish.id}}',
+                    "tags":     ['dish',],
+                    "vt":       {{dish.isVegetarian}},
+                    "vg":       {{dish.isVegan}}
+                }.
+            {% endfor %}
         ];
         
         $(document).ready(function(){
-            var item = map_tiles[item_name];
             
             var percents = $.map(nutrients, function(val, key) {return val;});
             var nutrition = Object.keys(nutrients);
@@ -47,21 +54,21 @@
             }
             
             // color vt/vg
-            if (item['vt'] == true){
+            if ({{ingred.isVegetarian}}){
                 $('#label_vt').addClass('green');
             } else {
                 $('#label_vt').addClass('red');
             }
             
-            if (item['vg'] == true){
+            if ({{ingred.isVegan}}){
                 $('#label_vg').addClass('green');
             } else {
                 $('#label_vg').addClass('red');
             }
 
             // populate specifics
-            $('#item_name').html(item['title']);
-            var item_img_url = 'url(' + item['image'] + ')'
+            $('#item_name').html({{ingred.name}});
+            var item_img_url = 'url(' + {{ingred.image}} + ')'
             $('#item_img').css('background-image', item_img_url);
 
             // populate dishes section
@@ -138,7 +145,7 @@
             <h2 class="food-title dishes">Dishes</h2>
                 <div class="tiles dishes"></div>
 
-                
+
                 </div>
             </div>
         </div>
