@@ -69,8 +69,8 @@
                 });
             {% endif %}
 
-            {% if {{subs}} %}
-                {% for sub in {{subs}} %}
+            {% if subs.all %}
+                {% for sub in subs.all %}
                     createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
                 {% endfor %}
             {% else %}
