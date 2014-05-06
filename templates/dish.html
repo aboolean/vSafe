@@ -80,13 +80,13 @@
             {% endif %}
 
             {% if dish.substitutes.all %}
-                {% for sim in dish.similar.all %}
-                    createTile('I' + '{{sim.id}}', '{{sim.name}}', '{{sim.image}}', {{sim.isVegetarian|lower}}, {{sim.isVegan|lower}}, [], $('.tiles.related'));
-                {% endfor %}
-            {% else %}
                 $(".related").each(function() {
                     this.remove();
                 });
+            {% else %}
+                {% for sim in dish.similar.all %}
+                    createTile('I' + '{{sim.id}}', '{{sim.name}}', '{{sim.image}}', {{sim.isVegetarian|lower}}, {{sim.isVegan|lower}}, [], $('.tiles.related'));
+                {% endfor %}
             {% endif %}
 
             $('.ui.dimmable')
