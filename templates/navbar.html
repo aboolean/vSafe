@@ -20,8 +20,7 @@
                         }));
                          },
                 select: function(event, suggestion){
-                         console.log(suggestion.item);
-                         console.log(suggestion.item.value + "     " + suggestion.item.data);
+                            window.location.href(suggestion.item.data);
                         }
             });
 
@@ -29,9 +28,6 @@
                 if(e.which == 13) {
                     var search = navInput.val().toLowerCase().replace(/\s+/g,"");
                     var suggestion = $(".ui-autocomplete:first li:first-child a").text().toLowerCase().replace(/\s+/g,"");
-                    console.log(search);
-                    console.log(suggestion);
-                    console.log(search == suggestion);
                     if (search == suggestion) {
                         var keyEvent = $.Event("keydown");  
                         keyEvent.keyCode = $.ui.keyCode.DOWN;
