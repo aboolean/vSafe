@@ -56,13 +56,13 @@
             }
             
             // color vt/vg
-            if ({{ingred.isVegetarian}}){
+            if ({{ingred.isVegetarian|lower}}){
                 $('#label_vt').addClass('green');
             } else {
                 $('#label_vt').addClass('red');
             }
             
-            if ({{ingred.isVegan}}){
+            if ({{ingred.isVegan|lower}}){
                 $('#label_vg').addClass('green');
             } else {
                 $('#label_vg').addClass('red');
