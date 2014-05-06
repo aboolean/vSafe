@@ -23,8 +23,8 @@
                         };
         
         var dishes = [
-            {% if ingred.dishes.all() %}
-                {% for dish in ingred.dishes.all() %}
+            {% if ingred.dishes.all %}
+                {% for dish in ingred.dishes.all %}
                     {
                         "title":    {{dish.name}},
                         "image":    {{dish.image}},
