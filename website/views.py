@@ -96,3 +96,22 @@ def subset (request):
 			})
 
 	return HttpResponse(json.dumps(response), content_type="application/json", status=200)
+
+@csrf_exempt
+def list_all (request):
+	"""
+	Returns a mapping of all items and their identifiers.
+	"""
+
+	if request.method != 'GET':
+		return HttpResponse(status=400)
+
+	response = {}
+
+	for dish in Dish.objects.all():
+		response[dish.name] = 'D' + str(dish.id)
+
+	for ingredient in Ingredient.objects.all():
+		response[ingredient.name] = 'I' + str(ingredient.id)
+
+	return HttpResponse(json.dumps(response), content_type="application/json", status=200)
