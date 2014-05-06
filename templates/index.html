@@ -12,7 +12,7 @@
             <div class="column">
                 <div class="ui icon input" id="search-home">
                     <input type="text" placeholder="Apple, Carrot, etc." id="search-input">
-                    <i class="circular inverted green search link icon"></i>
+                    <i class="circular inverted green search link icon" id="search-icon"></i>
                 </div>
             </div>
         </div>
@@ -43,6 +43,20 @@
                         keyEvent.keyCode = $.ui.keyCode.ENTER;
                         searchInput.trigger(keyEvent);
                     }
+                }
+            });
+
+            $("#search-icon").click(function() {
+                var search = searchInput.val().toLowerCase().replace(/\s+/g,"");
+                var suggestion = $("#ui-id-2 li:first-child a").text().toLowerCase().replace(/\s+/g,"");
+                
+                if (search == suggestion) {
+                    searchInput.focus();
+                    var keyEvent = $.Event("keydown");  
+                    keyEvent.keyCode = $.ui.keyCode.DOWN;
+                    searchInput.trigger(keyEvent);
+                    keyEvent.keyCode = $.ui.keyCode.ENTER;
+                    searchInput.trigger(keyEvent);
                 }
             });
         });

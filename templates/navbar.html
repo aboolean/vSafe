@@ -57,6 +57,20 @@
                     }
                 }
             });
+
+            $("#nav-search-icon").click(function() {
+                var search = navInput.val().toLowerCase().replace(/\s+/g,"");
+                var suggestion = $(".ui-autocomplete:first li:first-child a").text().toLowerCase().replace(/\s+/g,"");
+                
+                if (search == suggestion) {
+                    navInput.focus();
+                    var keyEvent = $.Event("keydown");  
+                    keyEvent.keyCode = $.ui.keyCode.DOWN;
+                    navInput.trigger(keyEvent);
+                    keyEvent.keyCode = $.ui.keyCode.ENTER;
+                    navInput.trigger(keyEvent);
+                }
+            });
         });
     </script>
     <nav class="ui green menu">
@@ -67,7 +81,7 @@
             <div class="item">
                 <div class="ui icon input" id="search-nav">
                     <input type="text" id="nav-input" placeholder="Apple, Carrot, etc.">
-                    <i class="circular inverted green search link icon"></i>
+                    <i class="circular inverted green search link icon" id="nav-search-icon"></i>
                 </div>
             </div>
         </div>
