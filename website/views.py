@@ -29,15 +29,17 @@ def ingredient (request, id_num):
 def dish (request, id_num):
 	t = get_template('dish.html')
 	dish_object = Dish.objects.get(id=id_num)
-	substitutes = [ingred.substitutes.all() for ingred in dish_object.ingredients.all()]
+	ingredients = dish_object.ingredients.all()
+	substitutes = [ingred.substitutes.all() for ingred in ingredients]
 	substitutes = list(itertools.chain.from_iterable(substitutes)).sort()
 
 	if substitutes == None or len(substitutes) == 0:
 		substitutes = []
 	else:
-		substitutes = list(substitutes for substitutes,_ in itertools.groupby(substitutes))
+		# substitutes = list(substitutes for substitutes,_ in itertools.groupby(substitutes))
+		substitutes = list(set(substitutes))
 
-	c = Context({'dish':dish_object, 'subs':substitutes})
+	c = Context({'dish':dish_object, 'subs':substitutes, 'ingredients':ingredients})
 	html = t.render(c)
 	return HttpResponse(html)
 

@@ -69,12 +69,9 @@
                         createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
                     {% endfor %}
                 {% else %}
-                    // $(".substitutes").each(function() {
-                    //     this.remove();
-                    // });
-{% for sub in subs %}
-                        createTile('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
-                    {% endfor %}
+                    $(".substitutes").each(function() {
+                        this.remove();
+                    });
                 {% endif %}
 
             {% else %}
