@@ -37,18 +37,9 @@
             </div>
         </div>
     </section>
-    <script>
+    <script> 
         $(document).ready(function() {
             var searchInput = $("#search-input");
-            var resources = 
-                        [{value:"Apple", data:"lookup value"},
-                         {value:"Quinoa", data:"lookup value"},
-                         {value:"Sriracha", data:"lookup value"},
-                         {value:"Tofu", data:"lookup value"},
-                         {value:"Vegetable Medly", data:"lookup value"},
-                         {value:"Barley", data:"lookup value"},
-                         {value:"Basil", data:"lookup value"},
-                        ]
             searchInput.autocomplete({
                 source: function( request, response ) {
                         var matcher = new RegExp($.trim(request.term).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), "i" );
