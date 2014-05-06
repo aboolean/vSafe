@@ -64,6 +64,17 @@
                     createTile('D' + '{{dish.id}}', '{{dish.name}}', '{{dish.image}}', {{dish.isVegetarian|lower}}, {{dish.isVegan|lower}}, [], $('.tiles.dishes'));
                 {% endfor %}
             {% endif %}
+            
+            
+            {% if ingred.substitutes.all %}
+                {% for ing in ingred.substitutes.all %}
+                    createTile('I' + '{{ing.id}}', '{{ing.name}}', '{{ing.image}}', {{ing.isVegetarian|lower}}, {{ing.isVegan|lower}}, [], $('.tiles.substitutes'));
+                {% endfor %}
+            {% else %}
+                $(".substitutes").each(function() {
+                    this.remove();
+                });
+            {% endif %}
 
             $('.ui.dimmable')
             .dimmer({
@@ -135,6 +146,8 @@
             <div class="ten wide column">
             <h2 class="food-title dishes">Dishes</h2>
                 <div class="tiles dishes"></div>
+            <h2 class="food-title ingredients">Dishes</h2>
+                <div class="tiles ingredients"></div>
 
 
                 </div>
