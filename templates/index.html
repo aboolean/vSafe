@@ -2,26 +2,6 @@
 
 <head>
     {% include "jsimports.html"%}
-    <script>
-        $(document).ready(function() {
-            $("#search-input").focus();
-            $("#home_nav").addClass("active");
-            $("#search-input").autocomplete({
-                source: [{value:"Apple", data:"lookup value"},
-                         {value:"Quinoa", data:"lookup value"},
-                         {value:"Sriracha", data:"lookup value"},
-                         {value:"Tofu", data:"lookup value"},
-                         {value:"Vegetable Medly", data:"lookup value"},
-                         {value:"Barley", data:"lookup value"},
-                         {value:"Basil", data:"lookup value"},
-                        ],
-                select: function(event, suggestion){
-                         console.log(suggestion.item);
-                         console.log(suggestion.item.value + "     " + suggestion.item.data);
-                        }
-            });
-        });
-    </script>
 </head>
 
 <body id="index">
