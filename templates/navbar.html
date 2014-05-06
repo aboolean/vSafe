@@ -2,16 +2,36 @@
     <h1 id="title"><a href="/vsafe/">vSafe</a></h1>
     <script>
         $(function() {
+            var item_list = function() {
+                var temp;
+                $.ajax({
+                    url:'http://aandre.scripts.mit.edu/vsafe/list_all/',
+                    type:'GET',
+                    async: false,
+                    dataType:'json',
+                    success: function(result){
+                      temp = result;
+                }});
+                return temp;
+            }();
+
+            var resources = Array();
+            var item_url = function(id) {
+                if (id[0] === 'I'){
+                    return 'http://aandre.scripts.mit.edu/vsafe/browse/ingredient/' + id.substring(1);
+                } else if (id[0] === 'D'){
+                    return 'http://aandre.scripts.mit.edu/vsafe/browse/dish/' + id.substring(1);
+                } else {
+                    return "";
+                }
+            };
+            var item_keys = Object.keys(item_list);
+            for (var ii = 0; ii < item_keys.length; ii++){
+                var identifier = item_list[item_keys[ii]];
+                resources.push({value:item_keys[ii], data:item_url(identifier)});
+            }
+            
             var navInput = $("#nav-input");
-            var resources = 
-                        [{value:"Apple", data:"lookup value"},
-                         {value:"Quinoa", data:"lookup value"},
-                         {value:"Sriracha", data:"lookup value"},
-                         {value:"Tofu", data:"lookup value"},
-                         {value:"Vegetable Medly", data:"lookup value"},
-                         {value:"Barley", data:"lookup value"},
-                         {value:"Basil", data:"lookup value"},
-                        ]
             navInput.autocomplete({
                 source: function( request, response ) {
                         var matcher = new RegExp($.trim(request.term).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), "i" );
