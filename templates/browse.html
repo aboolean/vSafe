@@ -96,7 +96,6 @@
             $(window).resize(function() {
                 updateSize();
             });
-            
 
             $("#browse_nav").addClass("active");
         });
@@ -110,7 +109,7 @@
             <div class="four wide column">
                 <div class="ui button" id="button-select">Select All</div>
                 <div class="ui button" id="button-deselect">Deselect All</div>
-                <div class="ui vertical menu compact form">
+                <div class="ui vertical menu compact form" id="browse-filters">
                     <div class="header item checkbox dropdown">
                         <i class="food icon green"></i>
                         <input type="checkbox" class="checkbox-box" id="checkbox-dish">
