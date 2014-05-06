@@ -47,7 +47,7 @@
                 $('#label_vt').addClass('red');
             }
             
-            if ({{dish.isVegan}}){
+            if ({{dish.isVegan|lower}}){
                 $('#label_vg').addClass('green');
             } else {
                 $('#label_vg').addClass('red');
