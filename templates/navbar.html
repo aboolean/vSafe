@@ -15,7 +15,7 @@
                 return temp;
             }();
 
-            var resources = Array();
+            resources = Array(); // global for home page
             var item_url = function(id) {
                 if (id[0] === 'I'){
                     return 'http://aandre.scripts.mit.edu/vsafe/browse/ingredient/' + id.substring(1);
