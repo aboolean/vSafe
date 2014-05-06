@@ -2,21 +2,47 @@
     <h1 id="title"><a href="/vsafe/">vSafe</a></h1>
     <script>
         $(function() {
-            $("#nav-input").autocomplete({
-                source: [{value:"Apple", data:"lookup value"},
+            var navInput = $("#nav-input");
+            var resources = 
+                        [{value:"Apple", data:"lookup value"},
                          {value:"Quinoa", data:"lookup value"},
                          {value:"Sriracha", data:"lookup value"},
                          {value:"Tofu", data:"lookup value"},
                          {value:"Vegetable Medly", data:"lookup value"},
                          {value:"Barley", data:"lookup value"},
                          {value:"Basil", data:"lookup value"},
-                        ],
+                        ]
+            navInput.autocomplete({
+                source: function( request, response ) {
+                        var matcher = new RegExp($.trim(request.term).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), "i" );
+                        response($.grep(resources, function(value) {
+                            return matcher.test( value.label || value.value || value );
+                        }));
+                         },
                 select: function(event, suggestion){
-                            window.location.href="/vsafe/browse/dish/1"
+                         console.log(suggestion.item);
+                         console.log(suggestion.item.value + "     " + suggestion.item.data);
                         }
             });
+
+            navInput.keypress(function (e) {
+                if(e.which == 13) {
+                    var search = navInput.val().toLowerCase().replace(/\s+/g,"");
+                    var suggestion = $(".ui-autocomplete:first li:first-child a").text().toLowerCase().replace(/\s+/g,"");
+                    console.log(search);
+                    console.log(suggestion);
+                    console.log(search == suggestion);
+                    if (search == suggestion) {
+                        var keyEvent = $.Event("keydown");  
+                        keyEvent.keyCode = $.ui.keyCode.DOWN;
+                        navInput.trigger(keyEvent);
+                        keyEvent.keyCode = $.ui.keyCode.ENTER;
+                        navInput.trigger(keyEvent);
+                    }
+                }
+            });
         });
-        </script>
+    </script>
     <nav class="ui green menu">
         <a href="/vsafe/" class="item" id="home_nav">HOME</a>
         <a href="/vsafe/learn/" class="item" id="learn_nav">LEARN</a>

@@ -37,4 +37,47 @@
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function() {
+            var searchInput = $("#search-input");
+            var resources = 
+                        [{value:"Apple", data:"lookup value"},
+                         {value:"Quinoa", data:"lookup value"},
+                         {value:"Sriracha", data:"lookup value"},
+                         {value:"Tofu", data:"lookup value"},
+                         {value:"Vegetable Medly", data:"lookup value"},
+                         {value:"Barley", data:"lookup value"},
+                         {value:"Basil", data:"lookup value"},
+                        ]
+            searchInput.autocomplete({
+                source: function( request, response ) {
+                        var matcher = new RegExp($.trim(request.term).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), "i" );
+                        response($.grep(resources, function(value) {
+                            return matcher.test( value.label || value.value || value );
+                        }));
+                         },
+                select: function(event, suggestion){
+                         console.log(suggestion.item);
+                         console.log(suggestion.item.value + "     " + suggestion.item.data);
+                        }
+            });
+
+            searchInput.keypress(function (e) {
+                if(e.which == 13) {
+                    var search = searchInput.val().toLowerCase().replace(/\s+/g,"");
+                    var suggestion = $("#ui-id-2 li:first-child a").text().toLowerCase().replace(/\s+/g,"");
+                    console.log(search);
+                    console.log(suggestion);
+                    console.log(search == suggestion);
+                    if (search == suggestion) {
+                        var keyEvent = $.Event("keydown");  
+                        keyEvent.keyCode = $.ui.keyCode.DOWN;
+                        searchInput.trigger(keyEvent);
+                        keyEvent.keyCode = $.ui.keyCode.ENTER;
+                        searchInput.trigger(keyEvent);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
