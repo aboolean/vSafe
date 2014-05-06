@@ -1,6 +1,20 @@
 <header class="ui">
     <h1 id="title"><a href="/vsafe/">vSafe</a></h1>
-
+    <script>
+    // creates the jquery autocomplete
+    $("#nav-input").autocomplete({
+        // sets to autofocus to the completed word
+        autoFocus: true,
+        // sets the min length to start searching the list
+        minLength: 2,
+        // sets the list of words to search to the keys
+        source: [1,2,3,4],
+        // function called when something is selected from autcomplete
+        select: function (event, ui) {
+            
+        }
+    });
+    </script>
     <nav class="ui green menu">
         <a href="/vsafe/" class="item" id="home_nav">HOME</a>
         <a href="/vsafe/learn/" class="item" id="learn_nav">LEARN</a>
@@ -8,7 +22,7 @@
         <div class="right menu">
             <div class="item">
                 <div class="ui icon input" id="search-nav">
-                    <input type="text" placeholder="Apple, Carrot, etc.">
+                    <input type="text" id="nav-input" placeholder="Apple, Carrot, etc.">
                     <i class="circular inverted green search link icon"></i>
                 </div>
             </div>
