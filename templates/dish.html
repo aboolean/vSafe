@@ -14,25 +14,13 @@
             
             Title, image, tags, vt/vg will be populated automatically.
         */
-        var item_name = "Vegetable Medley";
-        var nutrients = {"protein":     150,
-                         "iron":        78,
-                         "calcium":     20,
-                         "fiber":       20,
-                         "carbs":       0,
-                         "fats":        30
+        var nutrients = {"protein":     {{dish.protein}},
+                         "iron":        {{dish.iron}},
+                         "calcium":     {{dish.calcium}},
+                         "fiber":       {{dish.fiber}},
+                         "carbs":       {{dish.carbs}},
+                         "fats":        {{dish.fats}}
                         };
-        
-        var ingredients = [
-            map_tiles['Zucchini'],
-            map_tiles['Tofu'],
-            map_tiles['Apple'],
-            map_tiles['Tomato'],
-        ];
-        
-        var substitutes = Array();
-        
-        var related = Array();
         
         $(document).ready(function(){
             var item = map_tiles[item_name];
@@ -54,47 +42,53 @@
             }
             
             // color vt/vg
-            if (item['vt'] == true){
+            if ({{dish.isVegetarian|lower}}){
                 $('#label_vt').addClass('green');
             } else {
                 $('#label_vt').addClass('red');
             }
             
-            if (item['vg'] == true){
+            if ({{dish.isVegan}}){
                 $('#label_vg').addClass('green');
             } else {
                 $('#label_vg').addClass('red');
             }
 
             // populate specifics
-            $('#item_name').html(item['title']);
-            var item_img_url = 'url(' + item['image'] + ')'
+            $('#item_name').html('{{dish.name}}');
+            var item_img_url = 'url(' + '/vsafe/img/{{dish.image}}' + ')'
             $('#item_img').css('background-image', item_img_url);
 
             // populate sections or remove
-            if (ingredients.length == 0){
+            {% if dish.ingredients.all %}
+                {% for ingred in dish.ingredients.all %}
+                    createTiles('I' + '{{ingred.id}}', '{{ingred.name}}', '{{ingred.image}}', {{ingred.isVegetarian|lower}}, {{ingred.isVegan|lower}}, [], $('.tiles.ingredients'));
+                {% endfor %}
+            {% else %}
                 $(".ingredients").each(function() {
                     this.remove();
                 });
-            } else{
-                createTiles(ingredients, $('.tiles.ingredients'));
-            }
+            {% endif %}
 
-            if (substitutes.length == 0){
+            {% if dish.substitutes.all %}
+                {% for sub in dish.substitutes.all %}
+                    createTiles('I' + '{{sub.id}}', '{{sub.name}}', '{{sub.image}}', {{sub.isVegetarian|lower}}, {{sub.isVegan|lower}}, [], $('.tiles.substitutes'));
+                {% endfor %}
+            {% else %}
                 $(".substitutes").each(function() {
                     this.remove();
                 });
-            } else{
-                createTiles(substitutes, $('.tiles.substitutes'));
-            }
+            {% endif %}
 
-            if (related.length == 0){
+            {% if dish.substitutes.all %}
+                {% for sim in dish.similar.all %}
+                    createTiles('I' + '{{sim.id}}', '{{sim.name}}', '{{sim.image}}', {{sim.isVegetarian|lower}}, {{sim.isVegan|lower}}, [], $('.tiles.related'));
+                {% endfor %}
+            {% else %}
                 $(".related").each(function() {
                     this.remove();
                 });
-            } else{
-                createTiles(related, $('.tiles.related'));
-            }
+            {% endif %}
 
             $('.ui.dimmable')
             .dimmer({

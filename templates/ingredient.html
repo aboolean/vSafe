@@ -55,13 +55,13 @@
 
             // populate specifics
             $('#item_name').html('{{ingred.name}}');
-            var item_img_url = 'url(' + '{{ingred.image}}' + ')'
+            var item_img_url = 'url(' + '/vsafe/img/{{ingred.image}}' + ')'
             $('#item_img').css('background-image', item_img_url);
 
             // populate dishes section
             {% if ingred.dishes.all %}
                 {% for dish in ingred.dishes.all %}
-                    createTile('D' + '{{dish.id}}', '{{dish.name}}', '{{dish.image}}', {{dish.isVegetarian|lower}}, {{dish.isVegan|lower}}, $('.tiles.dishes'));
+                    createTile('D' + '{{dish.id}}', '{{dish.name}}', '{{dish.image}}', {{dish.isVegetarian|lower}}, {{dish.isVegan|lower}}, [], $('.tiles.dishes'));
                 {% endfor %}
             {% endif %}
 

@@ -1,5 +1,5 @@
 // append new tile to section
-function createTile(identifier, name, image, vt, vg, section) {
+function createTile(identifier, name, image, vt, vg, classes, section) {
     var new_tile = document.createElement('div');
 
     $(new_tile).addClass("result ui dimmable");
@@ -14,6 +14,11 @@ function createTile(identifier, name, image, vt, vg, section) {
     $(new_tile).html('<a href=' + link + ' class="ui dimmer"><div class="content"><div class="center"><div class="ui button">More Info</div></div></div></a>');
 
     $(new_tile).attr('id',identifier);
+
+    // add classes
+    for (var j = 0; j < classes.length; j++){
+        $(new_tile).addClass(classes[j]);
+    }
 
     // image
     var new_img = document.createElement('div');
