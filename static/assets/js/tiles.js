@@ -5,11 +5,11 @@ function createTile(identifier, name, image, vt, vg, section) {
     $(new_tile).addClass("result ui dimmable");
 
     // identifier and link
-    var link = '/';
+    var link = '/vsafe/';
     if (identifier[0] == "I") {
-        link = '/browse/ingredient/' + identifier.substring(1);
+        link = '/vsafe/browse/ingredient/' + identifier.substring(1);
     } else if (identifier[0] == "D") {
-        link = '/browse/dish/' + identifier.substring(1);
+        link = '/vsafe/browse/dish/' + identifier.substring(1);
     }
     $(new_tile).html('<a href=' + link + ' class="ui dimmer"><div class="content"><div class="center"><div class="ui button">More Info</div></div></div></a>');
 
