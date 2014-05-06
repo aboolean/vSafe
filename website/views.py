@@ -2,8 +2,10 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 from tagging.models import TaggedItem
+from django.views.decorators.csrf import csrf_exempt
 from models import *
 import itertools
+import json
 
 # Create your views here.
 def index (request):
@@ -47,26 +49,31 @@ def dish (request, id_num):
 	html = t.render(c)
 	return HttpResponse(html)
 
+@csrf_exempt
 def subset (request):
 	"""
 	Includes all dishes if 'dishAll' True, else union of 'dishFilters' string. Same for ingredients.
 	"""
+
+	data = json.loads(request.body)
+
 	REQUIRED_FIELDS = ['dishAll','ingredientAll','dishFilters','ingredientFilters']
 
-	if sum([1 if e in request.DATA else 0 for e in REQUIRED_FIELDS]) != len(REQUIRED_FIELDS):
-		return HttpResponse(status_code=400)
+	if sum([1 if e in data else 0 for e in REQUIRED_FIELDS]) != len(REQUIRED_FIELDS) or \
+		request.method != 'POST':
+		return HttpResponse(status=400)
 
 	items = list()
 
-	if request.DATA['dishAll'] == True:
+	if data['dishAll'] == True:
 		items.extend(list(Dish.objects.all()))
 	else:
-		items.extend(list(TaggedItem.objects.get_union_by_model(Dish, request.DATA['dishFilters'])))
+		items.extend(list(TaggedItem.objects.get_union_by_model(Dish, data['dishFilters'])))
 
-	if request.DATA['ingredientAll'] == True:
+	if data['ingredientAll'] == True:
 		items.extend(list(Ingredient.objects.all()))
 	else:
-		items.extend(list(TaggedItem.objects.get_union_by_model(Ingredient, request.DATA['ingredientFilters'])))
+		items.extend(list(TaggedItem.objects.get_union_by_model(Ingredient, data['ingredientFilters'])))
 
 	# identifier, name, image, vt, vg, classes, section
 	response = []
@@ -88,4 +95,4 @@ def subset (request):
 			"classes" : [],
 			})
 
-	return HttpResponse(json.dumps(response), content_type="application/json", status_code=200)
+	return HttpResponse(json.dumps(response), content_type="application/json", status=200)
