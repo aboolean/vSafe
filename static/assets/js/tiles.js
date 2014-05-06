@@ -11,7 +11,7 @@ function createTile(identifier, name, image, vt, vg, section) {
     } else if (identifier[0] == "D") {
         link = '/browse/dish/' + identifier.substring(1);
     }
-    $(new_tile).html('<a href=' + $(link) + ' class="ui dimmer"><div class="content"><div class="center"><div class="ui button">More Info</div></div></div></a>');
+    $(new_tile).html('<a href=' + link + ' class="ui dimmer"><div class="content"><div class="center"><div class="ui button">More Info</div></div></div></a>');
 
     $(new_tile).attr('id',identifier);
 
