@@ -128,32 +128,16 @@
                 console.log(dish_all,dish_tags.join(' '),ingredient_all,ingredient_tags.join(' '));
                 var filtered_items = get_filtered_tiles(dish_all,dish_tags.join(' '),ingredient_all,ingredient_tags.join(' '));
 //                list of: {"name": "Hamburger", "vg": false, "image": "hamburger.jpg", "classes": [], "vt": false, "identifier": "D2"}
-                var keep_mapping = function() {
-                    var temp = {};
-                    for (var i=0; i<filtered_items.length; i++){
-                        temp[filtered_items[i]["identifier"]] = filtered_items[i];
-                    }
-                    return temp;
-                }();
-                var keep_identifiers = Object.keys(keep_mapping);
                 
-                // remove each tile not in result
+                // remove each tile
                 $('.result').each(function() {
-                    // var this_id = $(this).attr('id');
-                    // if ($.inArray(this_id, keep_identifiers)){
-                    //     keep_identifiers.splice(keep_identifiers.indexOf(this_id),1);
-                    // } else {
-                    //     console.log(keep_identifiers, this_id);
-                    //     this.remove();
-                    // }
                     this.remove();
                 });
                 
-                // create remaining tiles
-                for (var i=0; i<keep_identifiers.length; i++){
-                    var key = keep_identifiers[i];
-                    var item = keep_mapping[key];
-                    createTile(key, item['name'], item['image'], item['vt'], item['vg'], ['result'], '#results_window');
+                // create resulting tiles
+                for (var i=0; i<filtered_items.length; i++){
+                    var item = filtered_items[i];
+                    createTile(item['identifier'], item['name'], item['image'], item['vt'], item['vg'], ['result'], '#results_window');
                 }
             });
 
