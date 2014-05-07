@@ -47,31 +47,45 @@
             navInput.keypress(function (e) {
                 if(e.which == 13) {
                     var search = navInput.val().toLowerCase().replace(/\s+/g,"");
-                    var suggestion = $(".ui-autocomplete:first li:first-child a").text().toLowerCase().replace(/\s+/g,"");
-                    if (search == suggestion) {
-                        var keyEvent = $.Event("keydown");  
-                        keyEvent.keyCode = $.ui.keyCode.DOWN;
-                        navInput.trigger(keyEvent);
-                        keyEvent.keyCode = $.ui.keyCode.ENTER;
-                        navInput.trigger(keyEvent);
+                    var suggestions = []
+                    $(".ui-autocomplete:first li").each(function(index) {
+                        suggestions.push(jQuery("a", this).text().toLowerCase().replace(/\s+/g,""));
+                    });
+                    
+                    for (var index = 0; index < suggestions.length; index++) {
+                        var suggestion = suggestions[index];
+                        if (search == suggestion) {
+                            var keyEvent = $.Event("keydown");  
+                            keyEvent.keyCode = $.ui.keyCode.DOWN;
+                            for (var k = 0; k < index + 1; k++) {
+                                navInput.trigger(keyEvent);
+                            }
+                            keyEvent.keyCode = $.ui.keyCode.ENTER;
+                            navInput.trigger(keyEvent);
+                        }
                     }
                 }
             });
 
             $("#nav-search-icon").click(function() {
                 var search = navInput.val().toLowerCase().replace(/\s+/g,"");
-                var suggestion = $(".ui-autocomplete:first li:first-child a").text().toLowerCase().replace(/\s+/g,"");
-
-                if (search == suggestion) {
-                    navInput.focus();
-                    var keyEvent = $.Event("keydown");  
-                    keyEvent.keyCode = $.ui.keyCode.DOWN;
-                    navInput.trigger(keyEvent);
-                    keyEvent.keyCode = $.ui.keyCode.DOWN;
-                    navInput.trigger(keyEvent);
-                    keyEvent.keyCode = $.ui.keyCode.ENTER;
-                    navInput.trigger(keyEvent);
-                }
+                var suggestions = []
+                    $(".ui-autocomplete:first li").each(function(index) {
+                        suggestions.push(jQuery("a", this).text().toLowerCase().replace(/\s+/g,""));
+                    });
+                    
+                    for (var index = 0; index < suggestions.length; index++) {
+                        var suggestion = suggestions[index];
+                        if (search == suggestion) {
+                            var keyEvent = $.Event("keydown");  
+                            keyEvent.keyCode = $.ui.keyCode.DOWN;
+                            for (var k = 0; k < index + 2; k++) {
+                                navInput.trigger(keyEvent);
+                            }
+                            keyEvent.keyCode = $.ui.keyCode.ENTER;
+                            navInput.trigger(keyEvent);
+                        }
+                    }
             });
         });
     </script>

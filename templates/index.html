@@ -35,30 +35,44 @@
             searchInput.keypress(function (e) {
                 if(e.which == 13) {
                     var search = searchInput.val().toLowerCase().replace(/\s+/g,"");
-                    var suggestion = $("#ui-id-2 li:first-child a").text().toLowerCase().replace(/\s+/g,"");
-                    if (search == suggestion) {
-                        var keyEvent = $.Event("keydown");  
-                        keyEvent.keyCode = $.ui.keyCode.DOWN;
-                        searchInput.trigger(keyEvent);
-                        keyEvent.keyCode = $.ui.keyCode.ENTER;
-                        searchInput.trigger(keyEvent);
+                    var suggestions = []
+                    $("#ui-id-2 li").each(function(index) {
+                        suggestions.push(jQuery("a", this).text().toLowerCase().replace(/\s+/g,""));
+                    });
+                    
+                    for (var index = 0; index < suggestions.length; index++) {
+                        var suggestion = suggestions[index];
+                        if (search == suggestion) {
+                            var keyEvent = $.Event("keydown");  
+                            keyEvent.keyCode = $.ui.keyCode.DOWN;
+                            for (var k = 0; k < index + 1; k++) {
+                                searchInput.trigger(keyEvent);
+                            }
+                            keyEvent.keyCode = $.ui.keyCode.ENTER;
+                            searchInput.trigger(keyEvent);
+                        }
                     }
                 }
             });
 
             $("#search-icon").click(function() {
                 var search = searchInput.val().toLowerCase().replace(/\s+/g,"");
-                var suggestion = $("#ui-id-2 li:first-child a").text().toLowerCase().replace(/\s+/g,"");
+                var suggestions = []
+                $("#ui-id-2 li").each(function(index) {
+                    suggestions.push(jQuery("a", this).text().toLowerCase().replace(/\s+/g,""));
+                });
 
-                if (search == suggestion) {
-                    searchInput.focus();
-                    var keyEvent = $.Event("keydown");  
-                    keyEvent.keyCode = $.ui.keyCode.DOWN;
-                    searchInput.trigger(keyEvent);
-                    keyEvent.keyCode = $.ui.keyCode.DOWN;
-                    searchInput.trigger(keyEvent);
-                    keyEvent.keyCode = $.ui.keyCode.ENTER;
-                    searchInput.trigger(keyEvent);
+                for (var index = 0; index < suggestions.length; index++) {
+                    var suggestion = suggestions[index];
+                    if (search == suggestion) {
+                        var keyEvent = $.Event("keydown");  
+                        keyEvent.keyCode = $.ui.keyCode.DOWN;
+                        for (var k = 0; k < index + 2; k++) {
+                            searchInput.trigger(keyEvent);
+                        }
+                        keyEvent.keyCode = $.ui.keyCode.ENTER;
+                        searchInput.trigger(keyEvent);
+                    }
                 }
             });
         });
