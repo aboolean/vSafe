@@ -25,7 +25,7 @@
                         var matcher = new RegExp($.trim(request.term).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), "i" );
                         response($.grep(resources, function(value) {
                             return matcher.test( value.label || value.value || value );
-                        }));
+                        }).slice(0,10));
                          },
                 select: function(event, suggestion){
                             window.location.href=suggestion.item.data;
@@ -75,6 +75,7 @@
                     }
                 }
             });
+            searchInput.focus();
             $("#home_nav").addClass("active");
         });
     </script>
