@@ -24,9 +24,120 @@
                 data:JSON.stringify(datap),
                 success: function(result){
                   temp = result;
-            }});
+                }
+            });
             return temp;
         };
+
+        // filter selection response
+        var modifySelection = function (checkbox) {
+            var isChecked = $(checkbox).children('input').prop("checked");
+            var ingredient_tags = [];
+            var dish_tags = [];
+            var dish_all = false;
+            var ingredient_all = false;
+
+            // Check the selected box
+            if (isChecked==undefined || isChecked==false){
+                checkState=true;
+                $(checkbox).children('input').prop('checked',checkState);
+            } else {
+                checkState=false;
+                $(checkbox).children('input').prop('checked',checkState);
+            }
+
+            // If a header is checked, check all of its children
+            var labelID = $(checkbox).children('input').prop('id');
+
+            if (labelID == 'checkbox-dish'){
+                for (var i=0; i<dishes.length;i++){
+                    var input = "#checkbox-"+dishes[i];
+                    $(input).prop('checked',checkState);
+                }
+                dish_all = checkState;
+                ingredient_all = $('#checkbox-ingredient').prop("checked");
+            } else if (labelID == 'checkbox-ingredient'){
+                for (var i=0; i<ingredients.length;i++){
+                    var input = "#checkbox-"+ingredients[i];
+                    $(input).prop('checked',checkState);
+                }
+                ingredient_all = checkState;
+                dish_all = $('#checkbox-dish').prop("checked");
+            }
+
+            // If a child is unchecked, uncheck the header
+            // determine checked boxes
+            for (var i=0; i<dishes.length;i++){
+                if (labelID=="checkbox-"+dishes[i]){
+                    $('#checkbox-dish').prop('checked',false);
+                    dish_all = false;
+                    ingredient_all = $('#checkbox-ingredient').prop("checked");
+                }
+                if ($("#checkbox-"+dishes[i]).is(":checked")){
+                    dish_tags.push(dishes[i]);
+                }
+            }
+
+            for (var i=0; i<ingredients.length;i++){
+                if (labelID=="checkbox-"+ingredients[i]){
+                    $('#checkbox-ingredient').prop('checked',false);
+                    ingredient_all = false;
+                    dish_all = $('#checkbox-dish').prop("checked");
+                }
+
+                if ($("#checkbox-"+ingredients[i]).is(":checked")){
+                    ingredient_tags.push(ingredients[i]);
+                }
+            }
+
+            // if all children selected, check header
+            if ($('.checkbox-box.dish:checked').length == $('.checkbox-box.dish').length){
+                console.log('witchcract');
+                $('#checkbox-dish').prop('checked',true);
+                dish_all = true;
+                ingredient_all = $('#checkbox-ingredient').prop("checked");
+            }
+
+            if ($('.checkbox-box.dish:checked').length == $('.checkbox-box.dish').length){
+                $('#checkbox-dish').prop('checked',true);
+                dish_all = true;
+                ingredient_all = $('#checkbox-ingredient').prop("checked");
+            }
+            if ($('.checkbox-box.ingredient:checked').length == $('.checkbox-box.ingredient').length){
+                $('#checkbox-ingredient').prop('checked',true);
+                ingredient_all = true;
+                dish_all = $('#checkbox-dish').prop("checked");
+            }
+            
+            // get desired items and populate page
+            var filtered_items = get_filtered_tiles(dish_all,dish_tags.join(' '),ingredient_all,ingredient_tags.join(' '));
+//                list of: {"name": "Hamburger", "vg": false, "image": "hamburger.jpg", "classes": [], "vt": false, "identifier": "D2"}
+            
+            // remove each tile
+            $('.result').each(function() {
+                this.remove();
+            });
+            
+            // create resulting tiles
+            for (var i=0; i<filtered_items.length; i++){
+                var item = filtered_items[i];
+                createTile(item['identifier'], item['name'], item['image'], item['vt'], item['vg'], [], '#results_window');
+            }
+
+            $('.ui.dimmable').dimmer({
+                on: 'hover',
+                duration: {
+                    show : 200,
+                    hide : 200
+                }
+            });
+        };
+
+        // select all on load
+        function loadAll() {
+            modifySelection($('#header-checkbox-dish'));
+            modifySelection($('#header-checkbox-ingredient'));
+        }
         
         Array.prototype.diff = function(a) {
             return this.filter(function(i) {return a.indexOf(i) < 0;});
@@ -39,95 +150,7 @@
 
             $('#button-select').click(function() {
                 $('.checkbox-box').prop('checked',true);
-            });
-
-            $('#button-deselect').click(function() {
-                $('.checkbox-box').prop('checked',false);
-            });
-
-            $('.checkbox').click(function(){
-                var isChecked = $(this).children('input').prop("checked");
-                var ingredient_tags = [];
-                var dish_tags = [];
-                var dish_all = false;
-                var ingredient_all = false;
-
-                // Check the selected box
-                if (isChecked==undefined || isChecked==false){
-                    checkState=true;
-                    $(this).children('input').prop('checked',checkState);
-                } else {
-                    checkState=false;
-                    $(this).children('input').prop('checked',checkState);
-                }
-
-                // If a header is checked, check all of its children
-                var labelID = $(this).children('input').prop('id');
-
-                if (labelID == 'checkbox-dish'){
-                    for (var i=0; i<dishes.length;i++){
-                        var input = "#checkbox-"+dishes[i];
-                        $(input).prop('checked',checkState);
-                    }
-                    dish_all = checkState;
-                    ingredient_all = $('#checkbox-ingredient').prop("checked");
-                } else if (labelID == 'checkbox-ingredient'){
-                    for (var i=0; i<ingredients.length;i++){
-                        var input = "#checkbox-"+ingredients[i];
-                        $(input).prop('checked',checkState);
-                    }
-                    ingredient_all = checkState;
-                    dish_all = $('#checkbox-dish').prop("checked");
-                }
-
-                // If a child is unchecked, uncheck the header
-                // determine checked boxes
-                for (var i=0; i<dishes.length;i++){
-                    if (labelID=="checkbox-"+dishes[i]){
-                        $('#checkbox-dish').prop('checked',false);
-                        dish_all = false;
-                        ingredient_all = $('#checkbox-ingredient').prop("checked");
-                    }
-                    if ($("#checkbox-"+dishes[i]).is(":checked")){
-                        dish_tags.push(dishes[i]);
-                    }
-                }
-
-                for (var i=0; i<ingredients.length;i++){
-                    if (labelID=="checkbox-"+ingredients[i]){
-                        $('#checkbox-ingredient').prop('checked',false);
-                        ingredient_all = false;
-                        dish_all = $('#checkbox-dish').prop("checked");
-                    }
-
-                    if ($("#checkbox-"+ingredients[i]).is(":checked")){
-                        ingredient_tags.push(ingredients[i]);
-                    }
-                }
-
-                // if all children selected, check header
-                if ($('.checkbox-box.dish:checked').length == $('.checkbox-box.dish').length){
-                    console.log('witchcract');
-                    $('#checkbox-dish').prop('checked',true);
-                    dish_all = true;
-                    ingredient_all = $('#checkbox-ingredient').prop("checked");
-                }
-
-                if ($('.checkbox-box.dish:checked').length == $('.checkbox-box.dish').length){
-                    $('#checkbox-dish').prop('checked',true);
-                    dish_all = true;
-                    ingredient_all = $('#checkbox-ingredient').prop("checked");
-                }
-                if ($('.checkbox-box.ingredient:checked').length == $('.checkbox-box.ingredient').length){
-                    $('#checkbox-ingredient').prop('checked',true);
-                    ingredient_all = true;
-                    dish_all = $('#checkbox-dish').prop("checked");
-                }
-                
-                // get desired items and populate page
-                console.log(dish_all,dish_tags.join(' '),ingredient_all,ingredient_tags.join(' '));
-                var filtered_items = get_filtered_tiles(dish_all,dish_tags.join(' '),ingredient_all,ingredient_tags.join(' '));
-//                list of: {"name": "Hamburger", "vg": false, "image": "hamburger.jpg", "classes": [], "vt": false, "identifier": "D2"}
+                var filtered_items = get_filtered_tiles(true,"",true,"");
                 
                 // remove each tile
                 $('.result').each(function() {
@@ -137,12 +160,28 @@
                 // create resulting tiles
                 for (var i=0; i<filtered_items.length; i++){
                     var item = filtered_items[i];
-                    createTile(item['identifier'], item['name'], item['image'], item['vt'], item['vg'], ['result'], '#results_window');
+                    createTile(item['identifier'], item['name'], item['image'], item['vt'], item['vg'], [], '#results_window');
                 }
+
             });
 
-            $('.ui.dimmable')
-            .dimmer({
+            $('#button-deselect').click(function() {
+                $('.checkbox-box').prop('checked',false);
+
+                // remove each tile
+                $('.result').each(function() {
+                    this.remove();
+                });
+            });
+
+            loadAll(); // load all titles initially
+
+            // checkbox click listener
+            $('.checkbox').click(function(){
+                modifySelection(this);
+            });
+
+            $('.ui.dimmable').dimmer({
                 on: 'hover',
                 duration: {
                     show : 200,
@@ -165,6 +204,7 @@
 
             $("#browse_nav").addClass("active");
         });
+
     </script>
 </head>
 <body>
@@ -176,7 +216,7 @@
                 <div class="ui button" id="button-select">Select All</div>
                 <div class="ui button" id="button-deselect">Deselect All</div>
                 <div class="ui vertical menu compact form" id="browse-filters">
-                    <div class="header item checkbox dropdown">
+                    <div class="header item checkbox dropdown" id="header-checkbox-dish">
                         <i class="food icon green"></i>
                         <input type="checkbox" class="checkbox-box" id="checkbox-dish">
                         <label>Dish</label>
@@ -200,7 +240,7 @@
                         </div>
                     </div>
 
-                    <div class="header item checkbox">
+                    <div class="header item checkbox" id="header-checkbox-ingredient">
                         <i class="leaf icon green"></i>
                         <input type="checkbox" class="checkbox-box" id="checkbox-ingredient">
                         <label>Ingredient</label>
