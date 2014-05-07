@@ -212,6 +212,11 @@ input {
     min-width: 164px !important;
 }
 
+.button.back {
+    margin: 5px;
+    width:100%;
+}
+
 
 /************************
 **
