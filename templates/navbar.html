@@ -88,19 +88,26 @@
                     }
             });
 
-            $('#browse_nav').click(function() {
+            function clearState() {
                 // clear toggle states
                 localStorage.dish_all = true;
                 localStorage.ing_all = true;
                 localStorage.ing_tags = "";
                 localStorage.dish_tags = "";
+            }
+
+            $('#browse_nav').click(function() {
+                clearState();
+            });
+
+            $('#title').click(function () {
+                clearState();
             });
         });
     </script>
     <nav class="ui green menu">
-        <a href="/vsafe/" class="item" id="home_nav">HOME</a>
+        <a href="/vsafe/" class="item" id="browse_nav">BROWSE</a>
         <a href="/vsafe/learn/" class="item" id="learn_nav">LEARN</a>
-        <a href="/vsafe/browse/" class="item" id="browse_nav">BROWSE</a>
         <div class="right menu">
             <div class="item">
                 <div class="ui icon input" id="search-nav">
