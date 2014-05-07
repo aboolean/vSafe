@@ -87,6 +87,14 @@
                         }
                     }
             });
+
+            $('#browse_nav').click(function() {
+                // clear toggle states
+                localStorage.dish_all = true;
+                localStorage.ing_all = true;
+                localStorage.ing_tags = "";
+                localStorage.dish_tags = "";
+            });
         });
     </script>
     <nav class="ui green menu">

@@ -92,7 +92,6 @@
 
             // if all children selected, check header
             if ($('.checkbox-box.dish:checked').length == $('.checkbox-box.dish').length){
-                console.log('witchcract');
                 $('#checkbox-dish').prop('checked',true);
                 dish_all = true;
                 ingredient_all = $('#checkbox-ingredient').prop("checked");
@@ -111,7 +110,11 @@
             
             // get desired items and populate page
             var filtered_items = get_filtered_tiles(dish_all,dish_tags.join(' '),ingredient_all,ingredient_tags.join(' '));
-//                list of: {"name": "Hamburger", "vg": false, "image": "hamburger.jpg", "classes": [], "vt": false, "identifier": "D2"}
+            // save filter criteria
+            localStorage.dish_all = dish_all;
+            localStorage.dish_tags = dish_tags.join(' ');
+            localStorage.ing_all = ingredient_all;
+            localStorage.ing_tags = ingredient_tags.join(' ');
             
             // remove each tile
             $('.result').each(function() {
@@ -121,7 +124,14 @@
             // create resulting tiles
             for (var i=0; i<filtered_items.length; i++){
                 var item = filtered_items[i];
-                createTile(item['identifier'], item['name'], item['image'], item['vt'], item['vg'], [], '#results_window');
+                createTile(
+                    item['identifier'],
+                    item['name'],
+                    item['image'],
+                    item['vt'],
+                    item['vg'],
+                    [],
+                    '#results_window');
             }
 
             $('.ui.dimmable').dimmer({
@@ -131,12 +141,71 @@
                     hide : 200
                 }
             });
+
+            // fetch tiles previously loaded
+            
         };
 
-        // select all on load
-        function loadAll() {
-            modifySelection($('#header-checkbox-dish'));
-            modifySelection($('#header-checkbox-ingredient'));
+        // restore browse filters and results
+        function restoreState() {
+            // load preferences
+            dish_all = JSON.parse(localStorage.dish_all);
+            dish_tags = localStorage.dish_tags;
+            ing_all = JSON.parse(localStorage.ing_all);
+            ing_tags = localStorage.ing_tags;
+
+            // fetch tiles previously loaded
+            console.log(dish_all, dish_tags, ing_all, ing_tags);
+            var filtered_items = get_filtered_tiles(dish_all, dish_tags, ing_all, ing_tags);
+
+            // remove each tile
+            $('.result').each(function() {
+                this.remove();
+            });
+            
+            // create resulting tiles
+            for (var i=0; i<filtered_items.length; i++){
+                var item = filtered_items[i];
+                createTile(
+                    item['identifier'],
+                    item['name'],
+                    item['image'],
+                    item['vt'],
+                    item['vg'],
+                    [],
+                    '#results_window');
+            }
+
+            // restore checkboxes
+            if (dish_all) {
+                // check headings and child filters
+                $('#checkbox-dish').prop('checked',true);
+                for (var i=0; i<dishes.length;i++){
+                    $("#checkbox-"+dishes[i]).prop('checked',true);
+                }
+            } else {
+                // check specified fitlers only
+                for (var i=0; i<dishes.length;i++){
+                    if (dish_tags.indexOf(dishes[i]) > -1){
+                        $("#checkbox-"+dishes[i]).prop('checked',true);
+                    }
+                }
+            }
+
+            if (ing_all) {
+                // check headings and child filters
+                $('#checkbox-ingredient').prop('checked',true);
+                for (var i=0; i<ingredients.length;i++){
+                    $("#checkbox-"+ingredients[i]).prop('checked',true);
+                }
+            } else {
+                // check specified fitlers only
+                for (var i=0; i<ingredients.length;i++){
+                    if (ing_tags.indexOf(ingredients[i]) > -1){
+                        $("#checkbox-"+ingredients[i]).prop('checked',true);
+                    }
+                }
+            }
         }
         
         Array.prototype.diff = function(a) {
@@ -174,7 +243,7 @@
                 });
             });
 
-            loadAll(); // load all titles initially
+            restoreState(); // load all titles initially
 
             // checkbox click listener
             $('.checkbox').click(function(){
