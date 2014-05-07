@@ -243,7 +243,20 @@
                 });
             });
 
-            restoreState(); // load all titles initially
+            // select all on initial load
+            if (localStorage.dish_all == undefined || localStorage.ing_all == undefined) { // inital load
+    console.log('here');
+                clearState();
+            } else if (
+                JSON.parse(localStorage.dish_all) == false &&
+                JSON.parse(localStorage.ing_all) == false &&
+                localStorage.ing_tags == "" &&
+                localStorage.dish_tags == ""){ // all unselected
+                clearState();
+            }
+
+            // restore from last session
+            restoreState();
 
             // checkbox click listener
             $('.checkbox').click(function(){

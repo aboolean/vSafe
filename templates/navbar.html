@@ -1,6 +1,15 @@
 <header class="ui">
     <h1 id="title"><a href="/vsafe/">vSafe</a></h1>
     <script>
+
+        function clearState() {
+            // clear toggle states
+            localStorage.dish_all = true;
+            localStorage.ing_all = true;
+            localStorage.ing_tags = "";
+            localStorage.dish_tags = "";
+        }
+            
         $(document).ready(function() {
             var item_list = function() {
                 var temp;
@@ -87,14 +96,6 @@
                         }
                     }
             });
-
-            function clearState() {
-                // clear toggle states
-                localStorage.dish_all = true;
-                localStorage.ing_all = true;
-                localStorage.ing_tags = "";
-                localStorage.dish_tags = "";
-            }
 
             $('#browse_nav').click(function() {
                 clearState();
