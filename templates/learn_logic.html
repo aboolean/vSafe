@@ -15,35 +15,18 @@ var currentTab = $("#summaryTab");
 var vegetarianContent = $(".vegetarian");
 var veganContent = $(".vegan");
 var currentDietContent = $(".vegetarian");
-var summaryContent = $(".summary");
-var mealsContent = $(".meals");
-var ingredientsContent = $(".ingredients");
-var nutrientsContent = $(".nutrients");
-var currentContent = $(".summary");
+var vgSummaryContent = $(".vegetarian .summary");
+var vgMealsContent = $(".vegetarian .meals");
+var vgIngredientsContent = $(".vegetarian .ingredients");
+var vgNutrientsContent = $(".vegetarian .nutrients");
+var currentContent = $(".vegetarian .summary");
+
+var vnSummaryContent = $(".vegan .summary");
+var vnMealsContent = $(".vegan .meals");
+var vnIngredientsContent = $(".vegan .ingredients");
+var vnNutrientsContent = $(".vegan .nutrients");
 
 var clickable = true;
-
-// clears all background animations
-var resetAnimations = function() {
-    summaryContent.removeClass("hidden visible animating fade down");
-    mealsContent.removeClass("hidden visible animating fade down");
-    ingredientsContent.removeClass("hidden visible animating fade down");
-    nutrientsContent.removeClass("hidden visible animating fade down");
-
-    summaryContent.removeAttr("style");
-    mealsContent.removeAttr("style");
-    ingredientsContent.removeAttr("style");
-    nutrientsContent.removeAttr("style");
-
-    summaryContent.addClass("hidden");
-    mealsContent.addClass("hidden");
-    ingredientsContent.addClass("hidden");
-    nutrientsContent.addClass("hidden");
-
-    currentContent.removeClass("hidden");
-    currentContent.addClass("visible");
-};
-
 
 veganButton.click(function(){
     if (clickable && vegetarian) {
@@ -53,14 +36,32 @@ veganButton.click(function(){
         vegetarian = false;
 
         vegetarianContent.transition("horizontal flip", "200ms", function(){
+            currentContent.removeClass("visible");
+            currentContent.addClass("hidden");
+            if (currentTab == summaryTab) {
+                vnSummaryContent.removeClass("hidden");
+                vnSummaryContent.addClass("visible");
+                currentContent = vnSummaryContent;
+            } else if (currentTab == mealsTab) {
+                vnMealsContent.removeClass("hidden");
+                vnMealsContent.addClass("visible");
+                currentContent = vnMealsContent;
+            } else if (currentTab == ingredientsTab) {
+                vnIngredientsContent.removeClass("hidden");
+                vnIngredientsContent.addClass("visible");
+                currentContent = vnIngredientsContent;
+            } else{
+                vnNutrientsContent.removeClass("hidden");
+                vnNutrientsContent.addClass("visible");
+                currentContent = vnNutrientsContent;
+            }
             veganContent.transition("horizontal flip", "200ms", function(){
-                resetAnimations();
                 clickable = true;
             });
         });
 
-        currentDietContent = veganContent
-    }
+currentDietContent = veganContent
+}
 });
 
 vegetarianButton.click(function(){
@@ -70,29 +71,52 @@ vegetarianButton.click(function(){
         vegetarianButton.addClass("green");
         vegetarian = true;
 
-        resetAnimations();
         veganContent.transition("horizontal flip", "200ms", function(){
+            currentContent.removeClass("visible");
+            currentContent.addClass("hidden");
+            if (currentTab == summaryTab) {
+                vgSummaryContent.removeClass("hidden");
+                vgSummaryContent.addClass("visible");
+                currentContent = vgSummaryContent;
+            } else if (currentTab == mealsTab) {
+                vgMealsContent.removeClass("hidden");
+                vgMealsContent.addClass("visible");
+                currentContent = vgMealsContent;
+            } else if (currentTab == ingredientsTab) {
+                vgIngredientsContent.removeClass("hidden");
+                vgIngredientsContent.addClass("visible");
+                currentContent = vgIngredientsContent;
+            } else{
+                vgNutrientsContent.removeClass("hidden");
+                vgNutrientsContent.addClass("visible");
+                currentContent = vgNutrientsContent;
+            }
             vegetarianContent.transition("horizontal flip", "200ms", function(){
-                resetAnimations();
                 clickable = true;
             });
         });
 
-        currentDietContent = vegetarianContent;
-    }
+currentDietContent = vegetarianContent;
+}
 });
 
 summaryTab.click(function(){
+    console.log(currentContent);
+    console.log(currentContent == veganContent);
+    var summaryContent;
+    if (currentDietContent == veganContent) {
+        summaryContent = vnSummaryContent;
+    } else {
+        summaryContent = vgSummaryContent;
+    }
     if (clickable && currentTab != summaryTab) {
         clickable = false;
         currentTab.removeClass("active");
         summaryTab.addClass("active");
 
-        resetAnimations();
         currentContent.transition("fade down", "200ms", function(){
             currentContent.addClass("hidden");
             summaryContent.transition("fade down", "200ms", function(){
-                resetAnimations();
                 clickable = true;
             });
         });
@@ -103,6 +127,12 @@ summaryTab.click(function(){
 });
 
 mealsTab.click(function(){
+    var mealsContent;
+    if (currentDietContent == veganContent) {
+        mealsContent = vnMealsContent;
+    } else {
+        mealsContent = vgMealsContent;
+    }
     if (clickable && currentTab != mealsTab) {
         clickable = false;
         currentTab.removeClass("active");
@@ -111,7 +141,6 @@ mealsTab.click(function(){
         currentContent.transition("fade down", "200ms", function(){
             currentContent.addClass("hidden");
             mealsContent.transition("fade down", "200ms", function(){
-                resetAnimations();
                 clickable = true;
             });
         });
@@ -122,6 +151,12 @@ mealsTab.click(function(){
 });
 
 ingredientsTab.click(function(){
+    var ingredientsContent;
+    if (currentDietContent == veganContent) {
+        ingredientsContent = vnIngredientsContent;
+    } else {
+        ingredientsContent = vgIngredientsContent;
+    }
     if (clickable && currentTab != ingredientsTab) {
         clickable = false;
         currentTab.removeClass("active");
@@ -130,7 +165,6 @@ ingredientsTab.click(function(){
         currentContent.transition("fade down", "200ms", function(){
             currentContent.addClass("hidden");
             ingredientsContent.transition("fade down", "200ms", function(){
-                resetAnimations();
                 clickable = true;
             });
         });
@@ -141,6 +175,12 @@ ingredientsTab.click(function(){
 });
 
 nutrientsTab.click(function(){
+    var nutrientsContent;
+    if (currentDietContent == veganContent) {
+        nutrientsContent = vnNutrientsContent;
+    } else {
+        nutrientsContent = vgNutrientsContent;
+    }
     if (clickable && currentTab != nutrientsTab) {
         clickable = false;
         currentTab.removeClass("active");
@@ -149,7 +189,6 @@ nutrientsTab.click(function(){
         currentContent.transition("fade down", "200ms", function(){
             currentContent.addClass("hidden");
             nutrientsContent.transition("fade down", "200ms", function(){
-                resetAnimations();
                 clickable = true;
             });
         });
