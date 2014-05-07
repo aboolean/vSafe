@@ -62,6 +62,10 @@
                 {% for dish in dishes %}
                     createTile('D' + '{{dish.id}}', '{{dish.name}}', '{{dish.image}}', {{dish.isVegetarian|lower}}, {{dish.isVegan|lower}}, [], $('.tiles.dishes'));
                 {% endfor %}
+            {% else %}
+                $(".dishes").each(function() {
+                    this.remove();
+                });
             {% endif %}
             
             
