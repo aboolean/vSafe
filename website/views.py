@@ -18,11 +18,6 @@ def learn (request):
 	html = t.render(Context({}))
 	return HttpResponse(html)
 
-def browse (request):
-	t = get_template('browse.html')
-	html = t.render(Context({}))
-	return HttpResponse(html)
-
 def ingredient (request, id_num):
 	t = get_template('ingredient.html')
 	ingredient_object = Ingredient.objects.get(id=id_num)
