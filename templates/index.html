@@ -232,6 +232,17 @@
                     createTile(item['identifier'], item['name'], item['image'], item['vt'], item['vg'], [], '#results_window');
                 }
 
+                $('.ui.dimmable').dimmer({
+                    on: 'hover',
+                    duration: {
+                        show : 200,
+                        hide : 200
+                    }
+                });
+
+                localStorage.dish_all = true;
+                localStorage.ing_all = true;
+
             });
 
             $('#button-deselect').click(function() {
@@ -241,6 +252,11 @@
                 $('.result').each(function() {
                     this.remove();
                 });
+
+                localStorage.dish_all = true;
+                localStorage.ing_all = true;
+                localStorage.dish_tags = "";
+                localStorage.ing_tags = "";
             });
 
             // select all on initial load
