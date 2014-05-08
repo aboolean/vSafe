@@ -134,6 +134,13 @@ table a {
     pointer-events: none;
 }
 
+#browse-filters {
+    margin-bottom: 2em;
+}
+
+#results-window:last-child {
+    padding-bottom: 2em;
+}
 
 .result {
     background-color: #88b653;
